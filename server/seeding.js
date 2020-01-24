@@ -30,3 +30,6 @@ RestaurantName: “Yasmin” (String),
 
 */
 
+s
+var dishName = [];
+var DishPrices = 
