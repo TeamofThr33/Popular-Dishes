@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import PopularDishes from './PopularDishes.jsx';
+import styled from "styled-components";
+
+const Heading = styled.h1`
+  color: red;
+  text-align: center;
+`;
 
 class App extends Component {
   constructor (props) {
@@ -18,11 +25,11 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div>
-        Hello World
-      </div>
-    );
+    return (<div>
+      <h2>Bob</h2>
+      <Heading>Testing</Heading>
+      <PopularDishes />
+    </div>)
   }
 }
 
