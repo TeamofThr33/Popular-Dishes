@@ -3,11 +3,13 @@ import styled from "styled-components";
 
 
 const Container = styled.div`
-    border: solid 1px;
-    border-radius: 3px;
+    border-width: 0 1px 1px;
+    border-style: solid;
+    border-radius: 4px 4px 4px 4px;
+    border-color: #e6e6e6;
     min-width: 192px;
-    height: 192px;
-    margin: 30px;
+    height: 186px;
+    margin: 12px;
 `;
 
 const CoverPicture = styled.img`
@@ -15,6 +17,34 @@ const CoverPicture = styled.img`
     height: 100%;
 `;
 
+const LowerBanner = styled.div`
+    width: 192px;
+    height: 66px;
+    background-color: white;
+    border-width: 0 1px 1px;
+    position:absolute;
+    margin-top: -70px;
+`;
+
+const DishName = styled.div`
+    padding-left: 12px;
+    padding-top: 18px;
+`;
+
+const DishStats = styled.div`
+    padding-left: 12px;
+    color:gray;
+`;
+
+const DishPrice = styled.span`
+    color: white;
+    background-color: rgba(51,51,51,.75);
+    border-radius: 4px;
+    padding: 3px 6px;
+    position:absolute;
+    margin-top: 90px;
+    margin-left: -62px;
+`;
 
 class PopularDish extends React.Component {
     constructor(props) {
@@ -23,11 +53,16 @@ class PopularDish extends React.Component {
 
     render() {
         return <Container>
-            <CoverPicture src={this.props.dish.coverPictureURL} />
-            <div className="dishName">{this.props.dish.dishName}</div>
-            <div className="dishPrice">{this.props.dish.dishPrice}</div>
-            <div className="numberOfPhotos">{this.props.dish.photos.length} Photos</div>
-            <div className="numberOfReviews">{this.props.dish.reviews.length} Reviews</div>
+            <CoverPicture src={this.props.dish.coverPictureURL}></CoverPicture>
+            <DishPrice>{this.props.dish.dishPrice}</DishPrice>
+            <LowerBanner>
+                <DishName>{this.props.dish.dishName}</DishName>
+                <DishStats>
+                    <span className="numberOfPhotos">{this.props.dish.photos.length} Photos</span>
+                    <span> · </span>
+                    <span className="numberOfReviews">{this.props.dish.reviews.length} Reviews</span>
+                </DishStats>
+            </LowerBanner>
         </Container>
     }
 }

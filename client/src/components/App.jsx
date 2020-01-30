@@ -9,15 +9,19 @@ const Heading = styled.h1`
 `;
 
 const Carousel = styled.div`
-  width: 200px;
+  max-height: 300px;
+  width: 650px;
+  border: solid;
+  overflow-x: scroll;
+  /* overflow: hidden; */
 `;
 
 Carousel.displayName = "Carousel";
 
 const CarouselWrapper = styled.div`
+  height: 420px;
   display: flex;
   flex-direction: row;
-  /* position: absolute; */
   transform: translateX(${(props) => props.position}px);
   transition: transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
 `;
@@ -48,16 +52,17 @@ class App extends Component {
   handleNext(event) {
     event.preventDefault();
     console.log('clicked');
-    this.setState({ position: this.state.position - 750 });
+    this.setState({ position: this.state.position - 655 });
   }
 
   handlePrevious(event) {
     event.preventDefault();
     console.log('clicked');
-    this.setState({ position: this.state.position + 750 });
+    this.setState({ position: this.state.position + 655 });
   }
 
   render() {
+
     var restaurantSample = this.state.restaurants[0]['popularDishes'];
     return <div>
       <h2>Bob</h2>
