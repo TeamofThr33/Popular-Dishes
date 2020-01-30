@@ -10,18 +10,18 @@ Format:
             PhotoDescription: “unforgettably delicious” (string),
             },
             {...} ],
-        DishReviews: [ {
-            UserName: “Sara L.” (String),
-            AvatarPhoto: url (String),
-            UserReviewdetail: “I loved this dish” (string),
-            UserReviewDate: 3/6/2018 (Date),
-            UserReviewRating: 4 (Number),
-            UserFriendsCount: 286 (Number),
-            UserReviewsCount: 302 (Number),
-            },
-            {...} ],
+            DishReviews: [ {
+                UserName: “Sara L.” (String),
+                AvatarPhoto: url (String),
+                UserReviewdetail: “I loved this dish” (string),
+                UserReviewDate: 3/6/2018 (Date),
+                UserReviewRating: 4 (Number),
+                UserFriendsCount: 286 (Number),
+                UserReviewsCount: 302 (Number),
+                },
+                {...} ],
         DishPrice: 65.00 (integer)},
-    {...}]
+        {...}]
 }
 */
 
@@ -37,7 +37,7 @@ var restaurantName = ['Integrity Fish House',
     'The Catfish Collaborative',
     'Deep Sea Eatery'];
 
-var dishName = ['Oysters', 'Jumbo Scallop & Crab', 'Seafood Penne', 'Ahi Tuna', 'Shellfish Platter', 'Mixed Grill', 'Ciopinno', 'Dungeness Crab Cakes', 'Clam Chowder'];
+var dishName = ['Oysters', 'Jumbo Scallop And Crab', 'Seafood Penne', 'Ahi Tuna', 'Shellfish Platter', 'Mixed Grill', 'Ciopinno', 'Dungeness Crab Cakes', 'Clam Chowder'];
 var userName = ['Shelia D.', 'Katie S.', 'Tina D.', 'Joanne C.', 'Laurie V.', 'William Y.', 'Ivy W.', 'Nilla R.', 'Brianna M.', 'Clarice G.'];
 var reviewDetail = ['I had this restaurant bookmarked since the last time I was at San Francisco which was about four years ago. So this time I made it my mission to go here for dinner. We use the Yelp app to put our name on the waitlist which said about 10 to 20 minutes. As soon as we got there we were called to be seated. I loved the waiting area which looked like a living room. They had a giant fireplace and very cozy couches. Our host took us to our booth which was right in front of the big windows overlooking the bay. He was extremely friendly and very funny as well. We actually asked him for some recommendations which he recommended the clam chowder (of course) and the shellfish platter. Not long after our waitress came by and took our drink orders. We ordered a couple of waters and two oyster shots. We got the fried calamari as starters, we got two bottles of clam chowder, and the shellfish platter. Before we knew it everything started coming out. The oyster shots were delicious. The clam chowders were amazing. Best I\'ve had in a while. It wasn\'t too fishy and the clams and the potatoes inside were very tender and tasty. Loved it. The shellfish platter was insanely delicious. The buttery sauce was so amazing. We couldn\'t get enough. We dipped the extra bread in the butter sauce and it was delicious. The fried calamari who is very crispy which is how it should be and very well seasoned. And when our waitress brought out the check she brought two pieces of Biscoff cookies with it. On the bottom of our receipts it said that if we take our receipts to the Biscoff café which was right across from this restaurant then we would get 20% discount. Which is exactly what we did. Overall our experience here was a fantastic one. I highly recommend it',
     'We plan to have a nice a meal on every trip we take and we chose Fog Harbor for our San Francisco trip based on their stellar reviews. We had a 5 o clock reservation for a table near the window and were seated right away. The view was stunning. We started with the crab tator tots that our server recommended and they were delicious. For dinner I had the ahí tuna and my husband had the mixed grill blackened with crab, we both loved our food. Our sons both had the kids salmon and they left their plates spotless. Our server was very attentive and helpful with our boys (10 and 13). If you plan on having a nice meal, it pays to make a reservation, we made one for a window table at sunset and we were not disappointed.',
