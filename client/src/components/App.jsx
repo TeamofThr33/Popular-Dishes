@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PopularDish from './PopularDish.jsx';
-import DishDetail from './DishDetail.jsx';
+// import DishDetail from './DishDetail.jsx';
 import styled from "styled-components";
 
 const Heading = styled.h1`
@@ -52,12 +52,12 @@ class App extends Component {
 
   handleNext(event) {
     event.preventDefault();
-    this.carousel.current.scrollBy({left: 665, top: 0, behavior: "smooth"})
+    this.carousel.current.scrollBy({left: this.state.positionX + 665, top: 0, behavior: "smooth"})
   }
 
   handlePrevious(event) {
     event.preventDefault();
-    this.carousel.current.scrollBy({left: -665, top: 0, behavior: "smooth"})
+    this.carousel.current.scrollBy({left: this.state.positionX -665, top: 0, behavior: "smooth"})
   }
 
   handleScroll(event) {
@@ -82,7 +82,7 @@ class App extends Component {
           {restaurantSample.map((dish, index) => <PopularDish dish={dish} key={index} />)}
         </CarouselWrapper>
       </Carousel>
-      <DishDetail dish={restaurantSample[0]}/>
+      {/* <DishDetail dish={restaurantSample[0]}/> */}
     </div>
   }
 }
