@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PopularDish from './PopularDish.jsx';
+import DishDetail from './DishDetail.jsx';
 import styled from "styled-components";
 
 const Heading = styled.h1`
@@ -12,8 +13,7 @@ const Carousel = styled.div`
   max-height: 300px;
   width: 650px;
   border: solid;
-  overflow-x: scroll;
-  /* overflow: hidden; */
+  overflow: hidden;
 `;
 
 Carousel.displayName = "Carousel";
@@ -22,21 +22,22 @@ const CarouselWrapper = styled.div`
   height: 420px;
   display: flex;
   flex-direction: row;
-  transform: translateX(${(props) => props.position}px);
-  transition: transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  overflow-x: scroll;
+  transform: scaleY(1);
 `;
 
 CarouselWrapper.displayName = "CarouselWrapper";
 
 const Button = styled.button`
-  transform: translateX(${(props) => props.position}px);
 `;
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { restaurants: [{ popularDishes: [] }], position: 0 };
+    this.state = { restaurants: [{ popularDishes: [] }], positionX: 0 };
     this.queryData();
+    this.carousel = React.createRef();
+    console.log(this.carousel);
   }
 
   queryData() {
@@ -51,29 +52,37 @@ class App extends Component {
 
   handleNext(event) {
     event.preventDefault();
-    console.log('clicked');
-    this.setState({ position: this.state.position - 655 });
+    this.carousel.current.scrollBy({left: 665, top: 0, behavior: "smooth"})
   }
 
   handlePrevious(event) {
     event.preventDefault();
-    console.log('clicked');
-    this.setState({ position: this.state.position + 655 });
+    this.carousel.current.scrollBy({left: -665, top: 0, behavior: "smooth"})
+  }
+
+  handleScroll(event) {
+    this.setState({positionX: event.target.scrollLeft})
   }
 
   render() {
 
-    var restaurantSample = this.state.restaurants[0]['popularDishes'];
+    if (this.state.restaurants[5] === undefined) {
+      var restaurantSample = [];
+    } else {
+      var restaurantSample = this.state.restaurants[5]['popularDishes'];
+    }
+
     return <div>
       <h2>Bob</h2>
       <Heading>Popular Dishes</Heading>
       <Button onClick={(e) => this.handlePrevious(e)}>Previous</Button>
       <Button onClick={(e) => this.handleNext(e)}>Next</Button>
       <Carousel>
-        <CarouselWrapper position={this.state.position}>
+        <CarouselWrapper ref={this.carousel} onScroll={this.handleScroll.bind(this)}>
           {restaurantSample.map((dish, index) => <PopularDish dish={dish} key={index} />)}
         </CarouselWrapper>
       </Carousel>
+      <DishDetail dish={restaurantSample[0]}/>
     </div>
   }
 }
