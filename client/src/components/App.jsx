@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PopularDish from './PopularDish.jsx';
-// import DishDetail from './DishDetail.jsx';
+import DishDetail from './DishDetail.jsx';
 import styled from "styled-components";
 
 const Heading = styled.h1`
@@ -24,6 +24,7 @@ const CarouselWrapper = styled.div`
   flex-direction: row;
   overflow-x: scroll;
   transform: scaleY(1);
+  scroll-behavior: smooth;
 `;
 
 CarouselWrapper.displayName = "CarouselWrapper";
@@ -52,16 +53,16 @@ class App extends Component {
 
   handleNext(event) {
     event.preventDefault();
-    this.carousel.current.scrollBy({left: this.state.positionX + 665, top: 0, behavior: "smooth"})
+    this.carousel.current.scrollBy(665, 0)
   }
 
   handlePrevious(event) {
     event.preventDefault();
-    this.carousel.current.scrollBy({left: this.state.positionX -665, top: 0, behavior: "smooth"})
+    this.carousel.current.scrollBy(- 665, 0)
   }
 
   handleScroll(event) {
-    this.setState({positionX: event.target.scrollLeft})
+    this.setState({ positionX: event.target.scrollLeft })
   }
 
   render() {
@@ -82,7 +83,10 @@ class App extends Component {
           {restaurantSample.map((dish, index) => <PopularDish dish={dish} key={index} />)}
         </CarouselWrapper>
       </Carousel>
-      {/* <DishDetail dish={restaurantSample[0]}/> */}
+      <div className="modal">
+        <button>Close</button>
+        <DishDetail dish={restaurantSample[0]} />
+      </div>
     </div>
   }
 }
