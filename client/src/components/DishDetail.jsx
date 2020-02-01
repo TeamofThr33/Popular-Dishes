@@ -44,10 +44,14 @@ const DishPicture = styled.img`
 
 DishPicture.displayName = "DishPicture";
 
+const StartOrder = styled.button`
+    width: 300px;
+    height: 36px;
+    color:white;
+    background-color: #d32323;
+`;
+
 const Reviews = styled.div`
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center; */
     overflow-y: scroll;
 `;
 
@@ -57,7 +61,7 @@ class DishDetail extends React.Component {
     }
 
     render() {
-        console.log(this.props.dish)
+
         if (this.props.dish === undefined) {
             var modal = '';
         } else {
@@ -78,12 +82,8 @@ class DishDetail extends React.Component {
                     <Reviews>
                         {this.props.dish['reviews'].map((review, index) => <ReviewEntry review={review} key={index} />)}
                     </Reviews>
-                    <div className="startorder"></div>
+                    <StartOrder>Start Order</StartOrder>
                 </RightContainer>
-                {/* <div className="changedish">
-                    <div className="previousdish"></div>
-                    <div className="nextdish"></div>
-                </div> */}
             </ModalContainer>
         }
 

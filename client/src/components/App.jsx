@@ -55,7 +55,7 @@ CloseButton.displayName = "CloseButton";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { restaurants: [{ popularDishes: [] }], positionX: 0, modal: false };
+    this.state = { restaurants: [{ popularDishes: [] }], positionX: 0, modal: false, currentDish: 0 };
     this.queryData();
     this.carousel = React.createRef();
     this.handleModal = this.handleModal.bind(this);
@@ -86,14 +86,24 @@ class App extends Component {
     this.setState({ positionX: event.target.scrollLeft })
   }
 
-  handleModal(event) {
+  handleModal(event, index) {
     event.preventDefault();
     if (this.state.modal === false) {
       document.body.style.background = 'rgba(0,0,0,.7)';
     } else {
       document.body.style.background = 'transparent';
     }
-    this.setState({modal: !this.state.modal})
+    this.setState({ modal: !this.state.modal, currentDish: index })
+  }
+
+  handlePreviousModal(event) {
+    event.preventDefault();
+    this.setState({currentDish: this.state.currentDish - 1});
+  }
+
+  handleNextModal(event) {
+    event.preventDefault();
+    this.setState({currentDish: this.state.currentDish + 1});
   }
 
   render() {
@@ -110,12 +120,16 @@ class App extends Component {
       <Button onClick={(e) => this.handleNext(e)}>Next</Button>
       <Carousel>
         <CarouselWrapper ref={this.carousel} onScroll={this.handleScroll.bind(this)}>
-          {restaurantSample.map((dish, index) => <PopularDish dish={dish} key={index} handleModal = {this.handleModal}/>)}
+          {restaurantSample.map((dish, index) => <PopularDish dish={dish} key={index} dishIndex={index} handleModal={this.handleModal} />)}
         </CarouselWrapper>
       </Carousel>
       <Modal modal={this.state.modal}>
         <CloseButton onClick={(e) => this.handleModal(e)}>Close</CloseButton>
-        <DishDetail dish={restaurantSample[0]} />
+        <DishDetail dish={restaurantSample[this.state.currentDish]} />
+        <div className="changedish">
+          <button className="previousdish" onClick={(e) => this.handlePreviousModal(e)}>Previous</button>
+          <button className="nextdish" onClick={(e) => this.handleNextModal(e)}>Next</button>
+        </div>
       </Modal>
     </AppComponent>
   }
