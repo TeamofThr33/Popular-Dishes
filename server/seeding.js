@@ -95,7 +95,7 @@ var generateData = () => {
                 review.username = userName[randomIntFromInterval(0, userName.length)];
                 review.usernamePhotoURL = formatUsernamePhotoURL();
                 review.userReview = reviewDetail[randomIntFromInterval(0, reviewDetail.length -1)];
-                review.userReviewDate = `${randomIntFromInterval(1,12)}/${randomIntFromInterval(1,28)}/${randomIntFromInterval(2012,2019)}}`;
+                review.userReviewDate = `${randomIntFromInterval(1,12)}/${randomIntFromInterval(1,28)}/${randomIntFromInterval(2012,2019)}`;
                 review.userReviewRating = randomIntFromInterval(0,5);
                 review.userFriendsCount = randomIntFromInterval(0,500);
                 review.userReviewsCount = randomIntFromInterval(0,200);

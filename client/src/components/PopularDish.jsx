@@ -52,7 +52,7 @@ class PopularDish extends React.Component {
     }
 
     render() {
-        return <Container>
+        return <Container onClick = {(e) => this.props.handleModal(e)}>
             <CoverPicture src={this.props.dish.coverPictureURL}></CoverPicture>
             <DishPrice>{this.props.dish.dishPrice}</DishPrice>
             <LowerBanner>

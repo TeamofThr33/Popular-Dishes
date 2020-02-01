@@ -4,9 +4,11 @@ import ReviewEntry from "./ReviewEntry.jsx";
 
 const ModalContainer = styled.div`
     display:flex;
+    background:white;
     flex-direction: row;
     justify-content: space-around;
     border: 1px solid;
+    border-radius:6px;
     width: 1300px;
     height: 730px;
 `;
@@ -14,6 +16,7 @@ const ModalContainer = styled.div`
 ModalContainer.displayName = "ModalContainer";
 
 const LeftContainer = styled.div`
+    background: black;
     width: 670px;
     height: 730px;
     display:flex;
@@ -25,6 +28,7 @@ LeftContainer.displayName = "LeftContainer";
 
 const RightContainer = styled.div`
     display: flex;
+    background: white;
     justify-content: center;
     flex-direction: column;
     width: 360px;
