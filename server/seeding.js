@@ -66,7 +66,7 @@ var formatDishPhotoURL = (name) => {
 }
 
 var formatUsernamePhotoURL = () => {
-    return `https://foodimages123456.s3-us-west-1.amazonaws.com/UserProfiles/UserProfile${randomIntFromInterval(1, 25)}.jpg`;
+    return `https://foodimages123456.s3-us-west-1.amazonaws.com/UserProfiles/UserProfile${randomIntFromInterval(1, 13)}.jpg`;
 }
 
 var generateData = () => {

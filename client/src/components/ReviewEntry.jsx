@@ -46,7 +46,7 @@ let ReviewEntry = (props) => (
             <Rating src= {`./icons/${props.review.userReviewRating}-stars.svg`}></Rating>
             <span className="date">{props.review.userReviewDate}</span>
         </div>
-        <div className="review">{props.review.userReview}</div>
+        <div className="review">{props.review.userReview}</div> <br></br>
     </div>
 )
 

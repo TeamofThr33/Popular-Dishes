@@ -47,10 +47,24 @@ const Modal = styled.div`
 
 Modal.displayName = "Modal";
 
-const CloseButton = styled.button`
+const CloseButton = styled.div`
+  float: right;
+  color: white;
+  cursor: pointer;
 `;
 
 CloseButton.displayName = "CloseButton";
+
+const NextDishButton = styled.button`
+  float: right;
+  cursor: pointer;
+`;
+
+const CrossButton = styled.img`
+  margin-left: 10px;
+  float: right;
+  cursor: pointer;
+`;
 
 class App extends Component {
   constructor(props) {
@@ -59,7 +73,6 @@ class App extends Component {
     this.queryData();
     this.carousel = React.createRef();
     this.handleModal = this.handleModal.bind(this);
-    console.log(this.carousel);
   }
 
   queryData() {
@@ -98,12 +111,12 @@ class App extends Component {
 
   handlePreviousModal(event) {
     event.preventDefault();
-    this.setState({currentDish: this.state.currentDish - 1});
+    this.setState({ currentDish: this.state.currentDish - 1 });
   }
 
   handleNextModal(event) {
     event.preventDefault();
-    this.setState({currentDish: this.state.currentDish + 1});
+    this.setState({ currentDish: this.state.currentDish + 1 });
   }
 
   render() {
@@ -114,7 +127,6 @@ class App extends Component {
     }
 
     return <AppComponent>
-      <h2>Bob</h2>
       <Heading>Popular Dishes</Heading>
       <Button onClick={(e) => this.handlePrevious(e)}>Previous</Button>
       <Button onClick={(e) => this.handleNext(e)}>Next</Button>
@@ -124,11 +136,14 @@ class App extends Component {
         </CarouselWrapper>
       </Carousel>
       <Modal modal={this.state.modal}>
-        <CloseButton onClick={(e) => this.handleModal(e)}>Close</CloseButton>
+        <div className="close">
+          <CrossButton src="./icons/cross.svg" onClick={(e) => this.handleModal(e)}></CrossButton>
+          <CloseButton onClick={(e) => this.handleModal(e)}>Close</CloseButton>
+        </div>
         <DishDetail dish={restaurantSample[this.state.currentDish]} />
         <div className="changedish">
           <button className="previousdish" onClick={(e) => this.handlePreviousModal(e)}>Previous</button>
-          <button className="nextdish" onClick={(e) => this.handleNextModal(e)}>Next</button>
+          <NextDishButton onClick={(e) => this.handleNextModal(e)}>Next</NextDishButton>
         </div>
       </Modal>
     </AppComponent>
