@@ -6,7 +6,6 @@ const ModalContainer = styled.div`
     display:flex;
     background:white;
     flex-direction: row;
-    /* justify-content: space-around; */
     border: 1px solid;
     border-radius:6px;
     width: 1300px;
@@ -80,7 +79,7 @@ const FooterComment = styled.div`
 const ChangePhotoControls = styled.div`
     display: flex;
     justify-content: space-between;
-    flex-direction: row;
+    flex-direction: column;
     position: absolute;
 `;
 
@@ -96,49 +95,40 @@ const RightContent = styled.div`
     padding: 30px;
 `;
 
-const NextPhotoButton = styled.img`
-    margin-right: -925px;
+const NextPhotoButton = styled.input`
+    margin-left: 909px;
+    margin-top: -36px;
     cursor: pointer;
+    width: 17px;
 `;
 
-const PreviousPhotoButton = styled.img`
+const PreviousPhotoButton = styled.input`
     margin-left: 15px;
+    width: 17px;
     cursor: pointer;
 `;
 
 class DishDetail extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { currentPhotoIndex: 0 };
-    }
-
-    handleNextPhoto(event) {
-        event.preventDefault();
-        this.setState({ currentPhotoIndex: this.state.currentPhotoIndex + 1 });
-    }
-
-    handlePreviousPhoto(event) {
-        event.preventDefault();
-        this.setState({ currentPhotoIndex: this.state.currentPhotoIndex - 1 });
     }
 
     render() {
-        console.log(this.props.dish);
         if (this.props.dish === undefined) {
             var modal = '';
         } else {
             var modal = <ModalContainer>
                 <LeftContainer>
                     <PictureContainer>
-                        <DishPicture src={this.props.dish['photos'][this.state.currentPhotoIndex].URL}></DishPicture>
+                        <DishPicture src={this.props.dish['photos'][this.props.currentPhotoIndex].URL}></DishPicture>
                     </PictureContainer>
                     <ChangePhotoControls>
-                        <PreviousPhotoButton src="./icons/leftArrow.svg" onClick={(e) => this.handlePreviousPhoto(e)}></PreviousPhotoButton>
-                        <NextPhotoButton src="./icons/rightArrow.svg" onClick={(e) => this.handleNextPhoto(e)}></NextPhotoButton>
+                        <PreviousPhotoButton type="image" src="./icons/leftArrow.svg" onClick={(e) => this.props.handlePreviousPhoto(e, this.props.dish['photos'].length)}></PreviousPhotoButton>
+                        <NextPhotoButton type="image" src="./icons/rightArrow.svg" onClick={(e) => this.props.handleNextPhoto(e, this.props.dish['photos'].length)}></NextPhotoButton>
                     </ChangePhotoControls>
                     <FooterComment>
-                        <Description>{this.props.dish['photos'][this.state.currentPhotoIndex].description}</Description>
-                        <PhotoCount>{this.state.currentPhotoIndex + 1} of {this.props.dish['photos'].length}</PhotoCount>
+                        <Description>{this.props.dish['photos'][this.props.currentPhotoIndex].description}</Description>
+                        <PhotoCount>{this.props.currentPhotoIndex + 1} of {this.props.dish['photos'].length}</PhotoCount>
                     </FooterComment>
                 </LeftContainer>
                 <RightContainer>
@@ -157,7 +147,6 @@ class DishDetail extends React.Component {
                 </RightContainer>
             </ModalContainer>
         }
-
 
         return <div>
             {modal}
