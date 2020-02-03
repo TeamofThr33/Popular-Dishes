@@ -7,6 +7,7 @@ import styled from "styled-components";
 
 const AppComponent = styled.div`
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  margin: 50px;
 `;
 
 const Heading = styled.h3`
@@ -16,8 +17,11 @@ const Heading = styled.h3`
 const Carousel = styled.div`
   max-height: 210px;
   width: 650px;
+  padding-left: 0px;
   /* border: solid; */
   overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
 `;
 
 Carousel.displayName = "Carousel";
@@ -25,6 +29,7 @@ Carousel.displayName = "Carousel";
 const CarouselWrapper = styled.div`
   height: 420px;
   display: flex;
+  justify-content: flex-start;
   flex-direction: row;
   overflow-x: scroll;
   transform: scaleY(1);
@@ -105,16 +110,26 @@ const CircleBox = styled.div`
 
 const LeftSelectionButton = styled.img`
   height: 12px;
+    opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 const RightSelectionButton = styled.img`
   height: 12px;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
+  margin-left: 2px;
 `;
 
 const LeftSelectionBox = styled.div`
-  display: ${props => props.positionX ? "flex" : "none"};
+  /* display: ${props => props.positionX ? "flex" : "none"}; */
   position: absolute;
-  margin-top: 85px;
+  margin-top: 76px;
+  margin-left: -17px;
   z-index: 10;
   cursor:pointer;
 `;
@@ -122,8 +137,8 @@ const LeftSelectionBox = styled.div`
 const RightSelectionBox = styled.div`
   display: ${props => props.positionX === props.carouselWidth ? "none" : "flex"};
   position: absolute;
-  margin-top: 85px;
-  margin-left: 626px;
+  margin-top: 77px;
+  margin-left: 613px;
   z-index: 10;
   cursor:pointer;
 `;
@@ -145,6 +160,11 @@ const CloseSection = styled.div`
 const ChangeDishControl = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+const PlaceHolder = styled.div`
+  width: 22px;
+  border: solid 1px white;
 `;
 
 class App extends Component {
@@ -186,12 +206,12 @@ class App extends Component {
 
   handleNext(event) {
     event.preventDefault();
-    this.carousel.current.scrollBy(665, 0)
+    this.carousel.current.scrollBy(654, 0)
   }
 
   handlePrevious(event) {
     event.preventDefault();
-    this.carousel.current.scrollBy(- 665, 0)
+    this.carousel.current.scrollBy(- 654, 0)
   }
 
   handleScroll(event) {
@@ -242,6 +262,7 @@ class App extends Component {
       <Carousel>
         <CarouselWrapper ref={this.carousel} onScroll={this.handleScroll.bind(this)}>
           {restaurantSample.map((dish, index) => <PopularDish dish={dish} key={index} dishIndex={index} handleModal={this.handleModal} />)}
+          <PlaceHolder></PlaceHolder>
         </CarouselWrapper>
       </Carousel>
       <Modal modal={this.state.modal}>

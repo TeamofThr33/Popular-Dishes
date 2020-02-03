@@ -8,7 +8,7 @@ const Container = styled.div`
     border-color: #e6e6e6;
     min-width: 192px;
     height: 186px;
-    margin: 12px;
+    margin-right: 24px;
     cursor: pointer;
     &:hover {
         box-shadow: 0 2px 6px rgba(0,0,0,.15);
