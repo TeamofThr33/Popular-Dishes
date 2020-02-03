@@ -60,6 +60,7 @@ const StartOrder = styled.button`
     border-color: #d32323;
     font-size: 14px;
     font-weight: bold;
+    cursor: pointer;
 `;
 
 const Reviews = styled.div`
@@ -117,12 +118,20 @@ const NextPhotoButton = styled.input`
     margin-top: -36px;
     cursor: pointer;
     width: 17px;
+    opacity: 0.7;
+    &:hover {
+    opacity: 1;
+    }
 `;
 
 const PreviousPhotoButton = styled.input`
     margin-left: 15px;
     width: 17px;
     cursor: pointer;
+    opacity: 0.7;
+    &:hover {
+    opacity: 1;
+    }
 `;
 
 const TopSection = styled.div`

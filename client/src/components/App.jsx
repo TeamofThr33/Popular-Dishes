@@ -50,24 +50,26 @@ const CloseButton = styled.div`
   font-size: 14px;
   color: white;
   cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 CloseButton.displayName = "CloseButton";
 
 const PreviousDishBox = styled.div`
   display: ${props => props.currentDish ? "flex" : "none"};
-  margin-top:3px;
+  margin-top: 3px;
+  margin-left: 10px;
   font-size: 14px;
-  position: absolute;
 `;
 
 const NextDishBox = styled.div`
   display: ${props => props.currentDish === (props.AmountOfDishes - 1) ? "none" : "flex"};
   float: right;
-  margin-top: -16px;
-  /* margin-left: 1000px */
+  margin-right: 10px;
+  margin-top: 3px;
   font-size: 14px;
-  position: absolute;
 `;
 
 const PreviousDishButton = styled.input`
@@ -131,10 +133,18 @@ const DishName = styled.span`
   cursor: pointer;
   margin-left: 15px;
   margin-right: 15px;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const CloseSection = styled.div`
   margin-bottom: 5px;
+`;
+
+const ChangeDishControl = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 class App extends Component {
@@ -240,7 +250,7 @@ class App extends Component {
           <CloseButton onClick={(e) => this.handleModal(e)}>Close</CloseButton>
         </CloseSection>
         <DishDetail dish={restaurantSample[this.state.currentDish]} currentPhotoIndex={this.state.currentPhotoIndex} handleNextPhoto={this.handleNextPhoto.bind(this)} handlePreviousPhoto={this.handlePreviousPhoto.bind(this)} />
-        <div className="changedish">
+        <ChangeDishControl>
           <PreviousDishBox currentDish={this.state.currentDish} onClick={(e) => this.handlePreviousDish(e)}>
             <PreviousDishButton type="image" src="./icons/leftArrow.svg"></PreviousDishButton>
             <DishName>{restaurantSample[this.state.currentDish - 1] ? restaurantSample[this.state.currentDish - 1]['dishName'] : "hello"}</DishName>
@@ -249,10 +259,10 @@ class App extends Component {
             <DishName>{restaurantSample[this.state.currentDish + 1] ? restaurantSample[this.state.currentDish + 1]['dishName'] : "hello"}</DishName>
             <NextDishButton type="image" src="./icons/rightArrow.svg"></NextDishButton>
           </NextDishBox>
-        </div>
+        </ChangeDishControl>>
       </Modal>
     </AppComponent>
-  }
-}
-
+        }
+      }
+      
 export default App;

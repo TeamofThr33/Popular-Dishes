@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
 
-
 const Container = styled.div`
     border-width: 0 1px 1px;
     border-style: solid;
@@ -35,11 +34,15 @@ const LowerBanner = styled.div`
 const DishName = styled.div`
     padding-left: 12px;
     padding-top: 18px;
+    font-size: 14px;
+    font-weight: bold;
 `;
 
 const DishStats = styled.div`
     padding-left: 12px;
     color:gray;
+    font-size: 12px;
+    margin-top:4px;
 `;
 
 const DishPrice = styled.span`
@@ -50,6 +53,7 @@ const DishPrice = styled.span`
     position:absolute;
     margin-top: 90px;
     margin-left: -62px;
+    font-size: 14px;
 `;
 
 class PopularDish extends React.Component {
