@@ -6,17 +6,17 @@ const ModalContainer = styled.div`
     display:flex;
     background:white;
     flex-direction: row;
-    border: 1px solid;
+    /* border: 1px solid; */
     border-radius:6px;
     width: 1300px;
-    height: 730px;
+    height: 700px;
 `;
 
 ModalContainer.displayName = "ModalContainer";
 
 const LeftContainer = styled.div`
     width: 940px;
-    height: 730px;
+    height: 700px;
     display:flex;
     justify-content: center;
     flex-direction: column;
@@ -27,10 +27,11 @@ LeftContainer.displayName = "LeftContainer";
 const RightContainer = styled.div`
     display: flex;
     background: white;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
     width: 360px;
-    height: 730px;
+    height: 700px;
+    border-radius: 0px 6px 6px 0px;
 `;
 
 RightContainer.displayName = "RightContainer";
@@ -40,6 +41,7 @@ const DishPicture = styled.img`
     justify-content: center;
     width: 940px;
     height: 700px;
+    border-radius: 6px 0px 0px 6px;
 `;
 
 const PictureContainer = styled.div`
@@ -54,26 +56,37 @@ const StartOrder = styled.button`
     height: 36px;
     color:white;
     background-color: #d32323;
+    border-radius: 3px;
+    border-color: #d32323;
+    font-size: 14px;
+    font-weight: bold;
 `;
 
 const Reviews = styled.div`
     overflow-y: scroll;
-    height: 450px;
+    height: 500px;
+    padding-bottom: 0px;
 `;
 
 const Description = styled.span`
     color: white;
+    margin: 20px;
+    border-radius: 0px 0px 0px 6px;
 `;
 
 const PhotoCount = styled.span`
     color: white;
+    margin: 20px;
 `;
 
 const FooterComment = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 53px;
     background: rgba(0,0,0,.5);
+    margin-top: -53px;
+    border-radius: 0px 0px 0px 6px;
 `;
 
 const ChangePhotoControls = styled.div`
@@ -84,15 +97,19 @@ const ChangePhotoControls = styled.div`
 `;
 
 const BottomContainer = styled.div`
-    height: 360px;
+    height: 97px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid gray;
+    border-top-style: solid;
+    border-color: #e6e6e6;
+    border-width: 1px;
+    border-radius: 0px 0px 6px 0px;
 `;
 
 const RightContent = styled.div`
     padding: 30px;
+    padding-bottom: 0px;
 `;
 
 const NextPhotoButton = styled.input`
@@ -106,6 +123,36 @@ const PreviousPhotoButton = styled.input`
     margin-left: 15px;
     width: 17px;
     cursor: pointer;
+`;
+
+const TopSection = styled.div`
+    height: 85px;
+    display: inline-block;
+    margin-top: -20px;
+`;
+
+const Title = styled.h2`
+    font-size: 22px;
+    color: #333;
+`;
+
+const Price = styled.div`
+    font-size: 14px;
+    margin-top: -17px;
+    font-weight: bold;
+    color: #333;
+`;
+
+const Ingredients = styled.div`
+    font-size: 14px;
+    margin-bottom: 25px;
+    color: #333;
+`;
+
+const ReviewCounts = styled.div`
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
 `;
 
 class DishDetail extends React.Component {
@@ -133,16 +180,18 @@ class DishDetail extends React.Component {
                 </LeftContainer>
                 <RightContainer>
                     <RightContent>
-                        <h2 className="title">{this.props.dish['dishName']}</h2>
-                        <div className="price">{this.props.dish['dishPrice']}</div>
-                        <div className="ingredients">{this.props.dish['ingredients']}</div>
-                        <div className="reviewsCount">Reviews ({this.props.dish['reviews'].length})</div>
+                        <TopSection>
+                            <Title>{this.props.dish['dishName']}</Title>
+                            <Price>{this.props.dish['dishPrice']}</Price>
+                        </TopSection>
                         <Reviews>
+                            <Ingredients>{this.props.dish['ingredients']}</Ingredients>
+                            <ReviewCounts>Reviews ({this.props.dish['reviews'].length})</ReviewCounts><br></br>
                             {this.props.dish['reviews'].map((review, index) => <ReviewEntry review={review} key={index} />)}
                         </Reviews>
                     </RightContent>
                     <BottomContainer>
-                        <StartOrder>Start Order</StartOrder>
+                        <StartOrder>View Website</StartOrder>
                     </BottomContainer>
                 </RightContainer>
             </ModalContainer>

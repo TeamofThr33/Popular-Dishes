@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 
 const AppComponent = styled.div`
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 `;
 
 const Heading = styled.h3`
@@ -46,14 +47,37 @@ Modal.displayName = "Modal";
 
 const CloseButton = styled.div`
   float: right;
+  font-size: 14px;
   color: white;
   cursor: pointer;
 `;
 
 CloseButton.displayName = "CloseButton";
 
-const NextDishButton = styled.button`
+const PreviousDishBox = styled.div`
+  display: ${props => props.currentDish ? "flex" : "none"};
+  margin-top:3px;
+  font-size: 14px;
+  position: absolute;
+`;
+
+const NextDishBox = styled.div`
+  display: ${props => props.currentDish === (props.AmountOfDishes - 1) ? "none" : "flex"};
   float: right;
+  margin-top: -16px;
+  /* margin-left: 1000px */
+  font-size: 14px;
+  position: absolute;
+`;
+
+const PreviousDishButton = styled.input`
+  width: 6px;
+  cursor: pointer;
+`;
+
+const NextDishButton = styled.input`
+  float: right;
+  width: 6px;
   cursor: pointer;
 `;
 
@@ -72,6 +96,9 @@ const CircleBox = styled.div`
   border-radius: 50%;
   background: #fff;
   border: 1px solid #e6e6e6;
+  &:hover {
+        box-shadow: 0 2px 6px rgba(0,0,0,.15);
+  }
 `;
 
 const LeftSelectionButton = styled.img`
@@ -99,6 +126,17 @@ const RightSelectionBox = styled.div`
   cursor:pointer;
 `;
 
+const DishName = styled.span`
+  color: white;
+  cursor: pointer;
+  margin-left: 15px;
+  margin-right: 15px;
+`;
+
+const CloseSection = styled.div`
+  margin-bottom: 5px;
+`;
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -111,21 +149,20 @@ class App extends Component {
   handleNextPhoto(event, CollectionLength) {
     event.preventDefault();
     if (this.state.currentPhotoIndex === CollectionLength - 1) {
-    this.setState({ currentPhotoIndex: 0 });
+      this.setState({ currentPhotoIndex: 0 });
     } else {
-    this.setState({ currentPhotoIndex: this.state.currentPhotoIndex + 1 });      
+      this.setState({ currentPhotoIndex: this.state.currentPhotoIndex + 1 });
     }
   }
 
   handlePreviousPhoto(event, CollectionLength) {
     event.preventDefault();
     if (this.state.currentPhotoIndex === 0) {
-    this.setState({ currentPhotoIndex: CollectionLength -1 });
+      this.setState({ currentPhotoIndex: CollectionLength - 1 });
     } else {
-    this.setState({ currentPhotoIndex: this.state.currentPhotoIndex - 1 });
+      this.setState({ currentPhotoIndex: this.state.currentPhotoIndex - 1 });
     }
   }
-
 
   queryData() {
     axios.get('/restaurants')
@@ -148,7 +185,7 @@ class App extends Component {
   }
 
   handleScroll(event) {
-    this.setState({ positionX: event.target.scrollLeft, carouselWidth: event.target.scrollWidth - 650})
+    this.setState({ positionX: event.target.scrollLeft, carouselWidth: event.target.scrollWidth - 650 })
   }
 
   handleModal(event, index) {
@@ -161,14 +198,14 @@ class App extends Component {
     this.setState({ modal: !this.state.modal, currentDish: index })
   }
 
-  handlePreviousModal(event) {
+  handlePreviousDish(event) {
     event.preventDefault();
-    this.setState({ currentDish: this.state.currentDish - 1, currentPhotoIndex: 0});
+    this.setState({ currentDish: this.state.currentDish - 1, currentPhotoIndex: 0 });
   }
 
-  handleNextModal(event) {
+  handleNextDish(event) {
     event.preventDefault();
-    this.setState({ currentDish: this.state.currentDish + 1, currentPhotoIndex: 0});
+    this.setState({ currentDish: this.state.currentDish + 1, currentPhotoIndex: 0 });
   }
 
   render() {
@@ -178,16 +215,16 @@ class App extends Component {
       var restaurantSample = this.state.restaurants[19]['popularDishes'];
     }
 
-    console.log(this.state.restaurants[19])
+    console.log(restaurantSample)
 
     return <AppComponent>
       <Heading>Popular Dishes</Heading>
-      <LeftSelectionBox onClick={(e) => this.handlePrevious(e)} positionX = {this.state.positionX}>
+      <LeftSelectionBox onClick={(e) => this.handlePrevious(e)} positionX={this.state.positionX}>
         <CircleBox>
           <LeftSelectionButton src="./icons/leftArrow-black.svg"></LeftSelectionButton>
         </CircleBox>
       </LeftSelectionBox>
-      <RightSelectionBox onClick={(e) => this.handleNext(e)} positionX = {this.state.positionX} carouselWidth = {this.state.carouselWidth} >
+      <RightSelectionBox onClick={(e) => this.handleNext(e)} positionX={this.state.positionX} carouselWidth={this.state.carouselWidth} >
         <CircleBox>
           <RightSelectionButton src="./icons/rightArrow-black.svg" ></RightSelectionButton>
         </CircleBox>
@@ -198,14 +235,20 @@ class App extends Component {
         </CarouselWrapper>
       </Carousel>
       <Modal modal={this.state.modal}>
-        <div className="close">
+        <CloseSection>
           <CrossButton src="./icons/cross.svg" onClick={(e) => this.handleModal(e)}></CrossButton>
           <CloseButton onClick={(e) => this.handleModal(e)}>Close</CloseButton>
-        </div>
-        <DishDetail dish={restaurantSample[this.state.currentDish]} currentPhotoIndex = {this.state.currentPhotoIndex} handleNextPhoto = {this.handleNextPhoto.bind(this)} handlePreviousPhoto = {this.handlePreviousPhoto.bind(this)} />
+        </CloseSection>
+        <DishDetail dish={restaurantSample[this.state.currentDish]} currentPhotoIndex={this.state.currentPhotoIndex} handleNextPhoto={this.handleNextPhoto.bind(this)} handlePreviousPhoto={this.handlePreviousPhoto.bind(this)} />
         <div className="changedish">
-          <button className="previousdish" onClick={(e) => this.handlePreviousModal(e)}>Previous</button>
-          <NextDishButton onClick={(e) => this.handleNextModal(e)}>Next</NextDishButton>
+          <PreviousDishBox currentDish={this.state.currentDish} onClick={(e) => this.handlePreviousDish(e)}>
+            <PreviousDishButton type="image" src="./icons/leftArrow.svg"></PreviousDishButton>
+            <DishName>{restaurantSample[this.state.currentDish - 1] ? restaurantSample[this.state.currentDish - 1]['dishName'] : "hello"}</DishName>
+          </PreviousDishBox>
+          <NextDishBox currentDish={this.state.currentDish} AmountOfDishes={restaurantSample.length} onClick={(e) => this.handleNextDish(e)}>
+            <DishName>{restaurantSample[this.state.currentDish + 1] ? restaurantSample[this.state.currentDish + 1]['dishName'] : "hello"}</DishName>
+            <NextDishButton type="image" src="./icons/rightArrow.svg"></NextDishButton>
+          </NextDishBox>
         </div>
       </Modal>
     </AppComponent>

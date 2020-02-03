@@ -5,23 +5,29 @@ import styled from "styled-components";
 const Container = styled.div`
     border-width: 0 1px 1px;
     border-style: solid;
-    border-radius: 4px 4px 4px 4px;
+    border-radius: 4px;
     border-color: #e6e6e6;
     min-width: 192px;
     height: 186px;
     margin: 12px;
+    cursor: pointer;
+    &:hover {
+        box-shadow: 0 2px 6px rgba(0,0,0,.15);
+    }
 `;
 
 const CoverPicture = styled.img`
+    border-radius: 4px;
     width: 100%;
     height: 100%;
 `;
 
 const LowerBanner = styled.div`
     width: 192px;
-    height: 66px;
+    height: 67px;
     background-color: white;
     border-width: 0 1px 1px;
+    border-radius: 0px 0px 4px 4px;
     position:absolute;
     margin-top: -70px;
 `;
