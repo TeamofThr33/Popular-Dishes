@@ -175,29 +175,61 @@ const PlaceHolder = styled.div`
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { restaurants: [{ popularDishes: [] }], positionX: 0, modal: false, currentDish: 0, currentPhotoIndex: 0, carouselWidth: 1 };
+    this.state = { restaurants: [{ popularDishes: [] }], positionX: 0, modal: false, currentDish: 0, currentPhotoIndex: 0, carouselWidth: 1, dishCollectionLength: 0 };
     this.queryData();
     this.carousel = React.createRef();
-    this.handleModal = this.handleModal.bind(this);
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
-  handleNextPhoto(event, CollectionLength) {
-    event.preventDefault();
-    if (this.state.currentPhotoIndex === CollectionLength - 1) {
+  componentDidMount() {
+    document.addEventListener('keydown', (e) => {
+      if (e.keyCode === 27) {
+        this.handleCloseModal();
+      } else if (e.keyCode === 39) {
+        this.handleNextPhoto();
+      } else if (e.keyCode === 37) {
+        this.handlePreviousPhoto();
+      }
+    });
+  }
+
+  handleCloseModal() {
+    this.setState({ modal: false, currentPhotoIndex: 0})
+  }
+
+  // handleNextPhoto(CollectionLength) {
+  //   if (this.state.currentPhotoIndex === CollectionLength - 1) {
+  //     this.setState({ currentPhotoIndex: 0 });
+  //   } else {
+  //     this.setState({ currentPhotoIndex: this.state.currentPhotoIndex + 1 });
+  //   }
+  // }
+
+  // handlePreviousPhoto(CollectionLength) {
+  //   if (this.state.currentPhotoIndex === 0) {
+  //     this.setState({ currentPhotoIndex: CollectionLength - 1 });
+  //   } else {
+  //     this.setState({ currentPhotoIndex: this.state.currentPhotoIndex - 1 });
+  //   }
+  // }
+
+  handleNextPhoto() {
+    if (this.state.currentPhotoIndex === this.state.dishCollectionLength - 1) {
       this.setState({ currentPhotoIndex: 0 });
     } else {
       this.setState({ currentPhotoIndex: this.state.currentPhotoIndex + 1 });
     }
   }
 
-  handlePreviousPhoto(event, CollectionLength) {
-    event.preventDefault();
+  handlePreviousPhoto() {
     if (this.state.currentPhotoIndex === 0) {
-      this.setState({ currentPhotoIndex: CollectionLength - 1 });
+      this.setState({ currentPhotoIndex: this.state.dishCollectionLength - 1 });
     } else {
       this.setState({ currentPhotoIndex: this.state.currentPhotoIndex - 1 });
     }
   }
+
 
   queryData() {
     axios.get('/restaurants')
@@ -223,9 +255,9 @@ class App extends Component {
     this.setState({ positionX: event.target.scrollLeft, carouselWidth: event.target.scrollWidth - 650 })
   }
 
-  handleModal(event, index) {
+  handleOpenModal(event, index, CollectionLength) {
     event.preventDefault();
-    this.setState({ modal: !this.state.modal, currentDish: index })
+    this.setState({ modal: true, currentDish: index, dishCollectionLength: CollectionLength, currentPhotoIndex: 0})
   }
 
   handlePreviousDish(event) {
@@ -261,30 +293,30 @@ class App extends Component {
       </RightSelectionBox>
       <Carousel>
         <CarouselWrapper ref={this.carousel} onScroll={this.handleScroll.bind(this)}>
-          {restaurantSample.map((dish, index) => <PopularDish dish={dish} key={index} dishIndex={index} handleModal={this.handleModal} />)}
+          {restaurantSample.map((dish, index) => <PopularDish dish={dish} key={index} dishIndex={index} handleOpenModal={this.handleOpenModal} />)}
           <PlaceHolder></PlaceHolder>
         </CarouselWrapper>
       </Carousel>
       {this.state.modal ? (
-      <Modal handleModal = {this.handleModal}>
-        <CloseSection>
-          <CloseButton onClick={(e) => this.handleModal(e)}>Close</CloseButton>
-          <CrossButton src="./icons/cross.svg" onClick={(e) => this.handleModal(e)}></CrossButton>
-        </CloseSection>
-        <DishDetail dish={restaurantSample[this.state.currentDish]} currentPhotoIndex={this.state.currentPhotoIndex} handleNextPhoto={this.handleNextPhoto.bind(this)} handlePreviousPhoto={this.handlePreviousPhoto.bind(this)} />
-        <ChangeDishControl>
-          <PreviousDishBox currentDish={this.state.currentDish} onClick={(e) => this.handlePreviousDish(e)}>
-            <PreviousDishButton type="image" src="./icons/leftArrow.svg"></PreviousDishButton>
-            <DishName>{restaurantSample[this.state.currentDish - 1] ? restaurantSample[this.state.currentDish - 1]['dishName'] : "hello"}</DishName>
-          </PreviousDishBox>
-          <NextDishBox currentDish={this.state.currentDish} AmountOfDishes={restaurantSample.length} onClick={(e) => this.handleNextDish(e)}>
-            <DishName>{restaurantSample[this.state.currentDish + 1] ? restaurantSample[this.state.currentDish + 1]['dishName'] : "hello"}</DishName>
-            <NextDishButton type="image" src="./icons/rightArrow.svg"></NextDishButton>
-          </NextDishBox>
-        </ChangeDishControl>
-      </Modal>) : null }
+        <Modal>
+          <CloseSection>
+            <CloseButton onClick={(e) => this.handleCloseModal(e)}>Close</CloseButton>
+            <CrossButton src="./icons/cross.svg" onClick={(e) => this.handleCloseModal(e)}></CrossButton>
+          </CloseSection>
+          <DishDetail dish={restaurantSample[this.state.currentDish]} currentPhotoIndex={this.state.currentPhotoIndex} handleNextPhoto={this.handleNextPhoto.bind(this)} handlePreviousPhoto={this.handlePreviousPhoto.bind(this)} />
+          <ChangeDishControl>
+            <PreviousDishBox currentDish={this.state.currentDish} onClick={(e) => this.handlePreviousDish(e)}>
+              <PreviousDishButton type="image" src="./icons/leftArrow.svg"></PreviousDishButton>
+              <DishName>{restaurantSample[this.state.currentDish - 1] ? restaurantSample[this.state.currentDish - 1]['dishName'] : "hello"}</DishName>
+            </PreviousDishBox>
+            <NextDishBox currentDish={this.state.currentDish} AmountOfDishes={restaurantSample.length} onClick={(e) => this.handleNextDish(e)} onKeyPress={this.handleKeyPress}>
+              <DishName>{restaurantSample[this.state.currentDish + 1] ? restaurantSample[this.state.currentDish + 1]['dishName'] : "hello"}</DishName>
+              <NextDishButton type="image" src="./icons/rightArrow.svg"></NextDishButton>
+            </NextDishBox>
+          </ChangeDishControl>
+        </Modal>) : null}
     </AppComponent>
-        }
-      }
-      
+  }
+}
+
 export default App;

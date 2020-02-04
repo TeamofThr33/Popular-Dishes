@@ -76,6 +76,7 @@ const Description = styled.span`
     color: white;
     margin: 20px;
     border-radius: 0px 0px 0px 6px;
+    font-size: 14px;
 `;
 
 const PhotoCount = styled.span`
@@ -91,6 +92,7 @@ const FooterComment = styled.div`
     background: rgba(0,0,0,.5);
     margin-top: -53px;
     border-radius: 0px 0px 0px 6px;
+    font-size: 14px;
 `;
 
 const ChangePhotoControls = styled.div`
@@ -170,23 +172,25 @@ const ReviewCounts = styled.div`
 class DishDetail extends React.Component {
     constructor(props) {
         super(props);
-        this.state ={ImageWidth: 0, ImageHeight: 0};
+        this.state = { ImageWidth: 0, ImageHeight: 0 };
     }
 
     render() {
-        
+
         if (this.props.dish === undefined) {
             var modal = '';
         } else {
             var modal = <ModalContainer>
                 <LeftContainer>
                     <PictureContainer>
-                        <DishPicture picture = {this.props.dish['photos'][this.props.currentPhotoIndex].URL}/>
+                        <DishPicture picture={this.props.dish['photos'][this.props.currentPhotoIndex].URL} />
                         {/* <DishPicture src={this.props.dish['photos'][this.props.currentPhotoIndex].URL} height="700"></DishPicture> */}
                     </PictureContainer>
                     <ChangePhotoControls>
-                        <PreviousPhotoButton type="image" src="./icons/leftArrow.svg" onClick={(e) => this.props.handlePreviousPhoto(e, this.props.dish['photos'].length)}></PreviousPhotoButton>
-                        <NextPhotoButton type="image" src="./icons/rightArrow.svg" onClick={(e) => this.props.handleNextPhoto(e, this.props.dish['photos'].length)}></NextPhotoButton>
+                        <PreviousPhotoButton type="image" src="./icons/leftArrow.svg" onClick={() => this.props.handlePreviousPhoto()}></PreviousPhotoButton>
+                        <NextPhotoButton type="image" src="./icons/rightArrow.svg" onClick={() => this.props.handleNextPhoto()}></NextPhotoButton>
+                        {/* <PreviousPhotoButton type="image" src="./icons/leftArrow.svg" onClick={() => this.props.handlePreviousPhoto(this.props.dish['photos'].length)}></PreviousPhotoButton>
+                        <NextPhotoButton type="image" src="./icons/rightArrow.svg" onClick={() => this.props.handleNextPhoto(this.props.dish['photos'].length)}></NextPhotoButton> */}
                     </ChangePhotoControls>
                     <FooterComment>
                         <Description>{this.props.dish['photos'][this.props.currentPhotoIndex].description}</Description>

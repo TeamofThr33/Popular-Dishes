@@ -19,11 +19,6 @@ const ModalBackground = styled.div`
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 `;
 
-const ModalContent = styled.div`
-  position: absolute;
-  z-index: 200;
-`;
-
 class Modal extends React.Component {
     constructor(props) {
         super(props);
@@ -31,11 +26,8 @@ class Modal extends React.Component {
 
     render () {
         return ReactDOM.createPortal(
-        // <ModalBackground onClick = { (e) => this.props.handleModal(e)}>
         <ModalBackground>
-            {/* <ModalContent> */}
             {this.props.children}
-            {/* </ModalContent> */}
         </ModalBackground>,
         appRoot
         )

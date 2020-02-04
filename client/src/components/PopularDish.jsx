@@ -62,7 +62,7 @@ class PopularDish extends React.Component {
     }
 
     render() {
-        return <Container onClick={(e) => this.props.handleModal(e, this.props.dishIndex)}>
+        return <Container onClick={(e) => this.props.handleOpenModal(e, this.props.dishIndex, this.props.dish.photos.length)}>
             <CoverPicture src={this.props.dish.coverPictureURL}></CoverPicture>
             <DishPrice>{this.props.dish.dishPrice}</DishPrice>
             <LowerBanner>
