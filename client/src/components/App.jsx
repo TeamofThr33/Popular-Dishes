@@ -18,7 +18,6 @@ const Carousel = styled.div`
   max-height: 210px;
   width: 650px;
   padding-left: 0px;
-  /* border: solid; */
   overflow: hidden;
   display: flex;
   justify-content: flex-start;
@@ -38,18 +37,6 @@ const CarouselWrapper = styled.div`
 
 CarouselWrapper.displayName = "CarouselWrapper";
 
-// const Modal = styled.div`
-//   display: ${props => props.modal ? "flex" : "none"};
-//   flex-direction: column;
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   z-index:20;
-// `;
-
-// Modal.displayName = "Modal";
-
 const CloseButton = styled.div`
   float: right;
   font-size: 14px;
@@ -63,7 +50,6 @@ const CloseButton = styled.div`
 CloseButton.displayName = "CloseButton";
 
 const PreviousDishBox = styled.div`
-  /* display: ${props => props.currentDish ? "flex" : "none"}; */
   visibility: ${props => props.currentDish ? "visible" : "hidden"};
   margin-top: 3px;
   margin-left: 10px;
@@ -175,6 +161,7 @@ const ChangeDishControl = styled.div`
 
 const PlaceHolder = styled.div`
   width: 22px;
+  margin-left:-7px;
   border: solid 1px white;
 `;
 
@@ -194,8 +181,10 @@ class App extends Component {
       if (e.keyCode === 27) {
         this.handleCloseModal();
       } else if (e.keyCode === 39) {
+        e.preventDefault();
         this.handleNextPhoto();
       } else if (e.keyCode === 37) {
+        e.preventDefault();
         this.handlePreviousPhoto();
       }
     });
@@ -204,22 +193,6 @@ class App extends Component {
   handleCloseModal() {
     this.setState({ modal: false, currentPhotoIndex: 0})
   }
-
-  // handleNextPhoto(CollectionLength) {
-  //   if (this.state.currentPhotoIndex === CollectionLength - 1) {
-  //     this.setState({ currentPhotoIndex: 0 });
-  //   } else {
-  //     this.setState({ currentPhotoIndex: this.state.currentPhotoIndex + 1 });
-  //   }
-  // }
-
-  // handlePreviousPhoto(CollectionLength) {
-  //   if (this.state.currentPhotoIndex === 0) {
-  //     this.setState({ currentPhotoIndex: CollectionLength - 1 });
-  //   } else {
-  //     this.setState({ currentPhotoIndex: this.state.currentPhotoIndex - 1 });
-  //   }
-  // }
 
   handleNextPhoto() {
     if (this.state.currentPhotoIndex === this.state.dishCollectionLength - 1) {
@@ -236,7 +209,6 @@ class App extends Component {
       this.setState({ currentPhotoIndex: this.state.currentPhotoIndex - 1 });
     }
   }
-
 
   queryData() {
     axios.get('/restaurants')
@@ -284,8 +256,6 @@ class App extends Component {
       var restaurantSample = this.state.restaurants[19]['popularDishes'];
     }
 
-    console.log(restaurantSample)
-
     return <AppComponent>
       <Heading>Popular Dishes</Heading>
       <LeftSelectionBox onClick={(e) => this.handlePrevious(e)} positionX={this.state.positionX}>
@@ -298,8 +268,8 @@ class App extends Component {
           <RightSelectionButton src="./icons/rightArrow-black.svg" ></RightSelectionButton>
         </CircleBox>
       </RightSelectionBox>
-      <Carousel>
-        <CarouselWrapper ref={this.carousel} onScroll={this.handleScroll.bind(this)}>
+      <Carousel id="carousel">
+        <CarouselWrapper ref={this.carousel} onScroll={this.handleScroll.bind(this)} id="carousel">
           {restaurantSample.map((dish, index) => <PopularDish dish={dish} key={index} dishIndex={index} handleOpenModal={this.handleOpenModal} />)}
           <PlaceHolder></PlaceHolder>
         </CarouselWrapper>
