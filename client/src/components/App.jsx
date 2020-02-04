@@ -3,7 +3,7 @@ import axios from 'axios';
 import PopularDish from './PopularDish.jsx';
 import DishDetail from './DishDetail.jsx';
 import styled from "styled-components";
-
+import Modal from "./Modal.jsx";
 
 const AppComponent = styled.div`
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -38,17 +38,17 @@ const CarouselWrapper = styled.div`
 
 CarouselWrapper.displayName = "CarouselWrapper";
 
-const Modal = styled.div`
-  display: ${props => props.modal ? "flex" : "none"};
-  flex-direction: column;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index:20;
-`;
+// const Modal = styled.div`
+//   display: ${props => props.modal ? "flex" : "none"};
+//   flex-direction: column;
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   z-index:20;
+// `;
 
-Modal.displayName = "Modal";
+// Modal.displayName = "Modal";
 
 const CloseButton = styled.div`
   float: right;
@@ -126,7 +126,7 @@ const RightSelectionButton = styled.img`
 `;
 
 const LeftSelectionBox = styled.div`
-  /* display: ${props => props.positionX ? "flex" : "none"}; */
+  display: ${props => props.positionX ? "flex" : "none"};
   position: absolute;
   margin-top: 76px;
   margin-left: -17px;
@@ -155,17 +155,22 @@ const DishName = styled.span`
 
 const CloseSection = styled.div`
   margin-bottom: 5px;
+  display: flex;
+  justify-content: flex-end;
+  width: 1290px;
 `;
 
 const ChangeDishControl = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 1275px;
 `;
 
 const PlaceHolder = styled.div`
   width: 22px;
   border: solid 1px white;
 `;
+
 
 class App extends Component {
   constructor(props) {
@@ -220,11 +225,11 @@ class App extends Component {
 
   handleModal(event, index) {
     event.preventDefault();
-    if (this.state.modal === false) {
-      document.body.style.background = 'rgba(0,0,0,.7)';
-    } else {
-      document.body.style.background = 'transparent';
-    }
+      // if (this.state.modal === false) {
+      //   document.body.style.background = 'rgba(0,0,0,.7)';
+      // } else {
+      //   document.body.style.background = 'transparent';
+      // }
     this.setState({ modal: !this.state.modal, currentDish: index })
   }
 
@@ -265,10 +270,11 @@ class App extends Component {
           <PlaceHolder></PlaceHolder>
         </CarouselWrapper>
       </Carousel>
-      <Modal modal={this.state.modal}>
+      {this.state.modal ? (
+      <Modal handleModal = {this.handleModal}>
         <CloseSection>
-          <CrossButton src="./icons/cross.svg" onClick={(e) => this.handleModal(e)}></CrossButton>
           <CloseButton onClick={(e) => this.handleModal(e)}>Close</CloseButton>
+          <CrossButton src="./icons/cross.svg" onClick={(e) => this.handleModal(e)}></CrossButton>
         </CloseSection>
         <DishDetail dish={restaurantSample[this.state.currentDish]} currentPhotoIndex={this.state.currentPhotoIndex} handleNextPhoto={this.handleNextPhoto.bind(this)} handlePreviousPhoto={this.handlePreviousPhoto.bind(this)} />
         <ChangeDishControl>
@@ -280,8 +286,8 @@ class App extends Component {
             <DishName>{restaurantSample[this.state.currentDish + 1] ? restaurantSample[this.state.currentDish + 1]['dishName'] : "hello"}</DishName>
             <NextDishButton type="image" src="./icons/rightArrow.svg"></NextDishButton>
           </NextDishBox>
-        </ChangeDishControl>>
-      </Modal>
+        </ChangeDishControl>
+      </Modal>) : null }
     </AppComponent>
         }
       }
