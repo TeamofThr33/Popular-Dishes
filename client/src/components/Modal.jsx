@@ -20,18 +20,26 @@ const ModalBackground = styled.div`
 `;
 
 class Modal extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+    this.background = React.createRef();
+    this.handleClickOutside.bind(this);
+  }
 
-    render () {
-        return ReactDOM.createPortal(
-        <ModalBackground>
-            {this.props.children}
-        </ModalBackground>,
-        appRoot
-        )
+  handleClickOutside(event) {
+    if (event.target.className === this.background.current.className) {
+      this.props.handleCloseModal();
     }
+  }
+
+  render() {
+    return ReactDOM.createPortal(
+      <ModalBackground onClick={(e) => this.handleClickOutside(e)} ref={this.background}>
+        {this.props.children}
+      </ModalBackground>,
+      appRoot
+    )
+  }
 }
 
 export default Modal;

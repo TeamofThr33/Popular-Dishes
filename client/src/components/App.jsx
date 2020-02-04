@@ -305,7 +305,7 @@ class App extends Component {
         </CarouselWrapper>
       </Carousel>
       {this.state.modal ? (
-        <Modal>
+        <Modal handleCloseModal = {this.handleCloseModal}>
           <CloseSection>
             <CloseButton onClick={(e) => this.handleCloseModal(e)}>Close</CloseButton>
             <CrossButton src="./icons/cross.svg" onClick={(e) => this.handleCloseModal(e)}></CrossButton>
