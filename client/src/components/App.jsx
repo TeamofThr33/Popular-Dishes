@@ -63,7 +63,8 @@ const CloseButton = styled.div`
 CloseButton.displayName = "CloseButton";
 
 const PreviousDishBox = styled.div`
-  display: ${props => props.currentDish ? "flex" : "none"};
+  /* display: ${props => props.currentDish ? "flex" : "none"}; */
+  visibility: ${props => props.currentDish ? "visible" : "hidden"};
   margin-top: 3px;
   margin-left: 10px;
   font-size: 14px;
@@ -71,7 +72,7 @@ const PreviousDishBox = styled.div`
 
 const NextDishBox = styled.div`
   display: ${props => props.currentDish === (props.AmountOfDishes - 1) ? "none" : "flex"};
-  float: right;
+  /* float: right; */
   margin-right: 10px;
   margin-top: 3px;
   font-size: 14px;
