@@ -81,12 +81,18 @@ const NextDishBox = styled.div`
 const PreviousDishButton = styled.input`
   width: 6px;
   cursor: pointer;
+  &:focus {
+    outline:0;
+  }
 `;
 
 const NextDishButton = styled.input`
   float: right;
   width: 6px;
   cursor: pointer;
+  &:focus {
+    outline:0;
+  }
 `;
 
 const CrossButton = styled.img`

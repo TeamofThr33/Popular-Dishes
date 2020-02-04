@@ -127,6 +127,9 @@ const NextPhotoButton = styled.input`
     &:hover {
     opacity: 1;
     }
+    &:focus {
+    outline:0;
+    }
 `;
 
 const PreviousPhotoButton = styled.input`
@@ -136,6 +139,9 @@ const PreviousPhotoButton = styled.input`
     opacity: 0.7;
     &:hover {
     opacity: 1;
+    }
+    &:focus {
+    outline:0;
     }
 `;
 
