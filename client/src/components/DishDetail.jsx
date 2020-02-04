@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import ReviewEntry from "./ReviewEntry.jsx";
+import DishPicture from "./DishPicture.jsx";
 
 const ModalContainer = styled.div`
     display:flex;
     background:white;
     flex-direction: row;
-    /* border: 1px solid; */
     border-radius:6px;
     width: 1300px;
     height: 700px;
@@ -36,20 +36,23 @@ const RightContainer = styled.div`
 
 RightContainer.displayName = "RightContainer";
 
-const DishPicture = styled.img`
-    display:flex;
-    justify-content: center;
-    width: 940px;
-    height: 700px;
-    border-radius: 6px 0px 0px 6px;
-`;
+// const DishPicture = styled.img`
+//     display:flex;
+//     justify-content: center;
+//     align-items: center;
+// `;
 
 const PictureContainer = styled.div`
     display:flex;
     justify-content: center;
+    align-items: center;
+    background-color: black;
+    border-radius: 6px 0px 0px 6px;
+    width: 940px;
+    height: 700px;
 `;
 
-DishPicture.displayName = "DishPicture";
+// DishPicture.displayName = "DishPicture";
 
 const StartOrder = styled.button`
     width: 300px;
@@ -167,16 +170,19 @@ const ReviewCounts = styled.div`
 class DishDetail extends React.Component {
     constructor(props) {
         super(props);
+        this.state ={ImageWidth: 0, ImageHeight: 0};
     }
 
     render() {
+        
         if (this.props.dish === undefined) {
             var modal = '';
         } else {
             var modal = <ModalContainer>
                 <LeftContainer>
                     <PictureContainer>
-                        <DishPicture src={this.props.dish['photos'][this.props.currentPhotoIndex].URL}></DishPicture>
+                        <DishPicture picture = {this.props.dish['photos'][this.props.currentPhotoIndex].URL}/>
+                        {/* <DishPicture src={this.props.dish['photos'][this.props.currentPhotoIndex].URL} height="700"></DishPicture> */}
                     </PictureContainer>
                     <ChangePhotoControls>
                         <PreviousPhotoButton type="image" src="./icons/leftArrow.svg" onClick={(e) => this.props.handlePreviousPhoto(e, this.props.dish['photos'].length)}></PreviousPhotoButton>

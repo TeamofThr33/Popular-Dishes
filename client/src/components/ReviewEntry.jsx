@@ -56,6 +56,7 @@ const ReadMore = styled.div`
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
     color: #0073bb;
     cursor: pointer;
+    margin-top: 4px;
 `;
 
 const Username = styled.div`
@@ -65,6 +66,7 @@ const Username = styled.div`
 
 const Review = styled.span`
     font-size: 14px;
+    margin-top: 5px;
 `;
 
 const StatsSection = styled.div`
@@ -75,6 +77,7 @@ const StatsSection = styled.div`
 const RatingSection = styled.div`
     display:flex;
     align-items: center;
+    margin-bottom: 3px; 
 `;
 
 const ProfileLeft = styled.div`

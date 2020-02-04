@@ -225,11 +225,6 @@ class App extends Component {
 
   handleModal(event, index) {
     event.preventDefault();
-      // if (this.state.modal === false) {
-      //   document.body.style.background = 'rgba(0,0,0,.7)';
-      // } else {
-      //   document.body.style.background = 'transparent';
-      // }
     this.setState({ modal: !this.state.modal, currentDish: index })
   }
 
