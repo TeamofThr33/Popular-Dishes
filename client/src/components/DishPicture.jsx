@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 
 const Picture = styled.img`
-    width: ${props => props.heightDimension >= props.widthDimension ? 'auto' : '934px' };
+    width: ${props => props.heightDimension >= props.widthDimension ? 'auto' : '933px' };
     height: ${props => props.heightDimension >= props.widthDimension ? '700px' : 'auto' };
     border-radius: ${props => props.heightDimension >= props.widthDimension ? '0px' : '6px 0px 0px 6px' };
 `;

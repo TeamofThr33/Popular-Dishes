@@ -52,6 +52,7 @@ const Date = styled.span`
 `;
 
 const ReadMore = styled.div`
+    /* display: ${props => props.expand ? "flex" : "none"}; */
     font-size: 12px;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
     color: #0073bb;
@@ -126,8 +127,15 @@ class ReviewEntry extends React.Component {
                 <Rating src={`./icons/${this.props.review.userReviewRating}-stars.svg`}></Rating>
                 <Date>{this.props.review.userReviewDate}</Date>
             </RatingSection>
-            <Review>{this.state.expand ? this.state.currentReview : this.state.shortReview}</Review>
-            <ReadMore onClick={(e) => this.handleReadMore(e)}>{this.state.expand ? "Read Less" : "Read More"}</ReadMore>
+            {this.props.review.userReview.length < 230 ? (<div>
+                <Review>{this.state.currentReview}</Review><br></br>
+                </div>) 
+                :
+                (<div>
+                    <Review>{this.state.expand ? this.state.currentReview : this.state.shortReview}</Review>
+                    <ReadMore onClick={(e) => this.handleReadMore(e)} expand={this.state.expand}>{this.state.expand ? "Read Less" : "Read More"}</ReadMore>
+                </div>)
+            }
             <br></br>
         </div>
     }
