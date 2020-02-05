@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="36px" viewBox="0 0 17 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>leftArrow</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="leftArrow" transform="translate(0.000000, -1.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M14.414,0.992 C14.98,0.992 15.551,1.184 16.028,1.58 C17.143,2.505 17.324,4.193 16.432,5.35 L5.902,19 L16.432,32.65 C17.324,33.806 17.142,35.494 16.028,36.42 C14.912,37.344 13.285,37.157 12.393,36 L0.57,20.675 C-0.18517142,19.6860088 -0.18517142,18.3139912 0.57,17.325 L12.394,1.998 C12.8736245,1.3657701 13.6204355,0.993104054 14.414,0.99 L14.414,0.992 Z" id="Path"></path>
+        </g>
+    </g>
+</svg>

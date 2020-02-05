@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Path</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="cross" fill="#FFFFFF" fill-rule="nonzero">
+            <polygon id="Path" points="8 9.415 2.343 15.07 0.93 13.658 6.585 8 0.93 2.343 2.342 0.93 8 6.585 13.657 0.928 15.07 2.34 9.416 8 15.073 13.657 13.66 15.071"></polygon>
+        </g>
+    </g>
+</svg>

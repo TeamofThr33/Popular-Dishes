@@ -1,16 +1,21 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import App from '../client/src/components/App.jsx';
-import PopularDishes from '../client/src/components/PopularDishes';
+import PopularDish from '../client/src/components/PopularDish';
 
 describe('App component', () => {
-    
-    it("should render PopularDishes component, with 'Hello Dish'", () => {
-        const wrapper = shallow(<App />);
-        const title = wrapper.find(PopularDishes);
 
-        expect(title.exists()).toBe(true);
-    })
+    // it("should contain the Popular dish component", () => {
+    //     const wrapper = shallow(<App />);
+    //     const populardish = wrapper.find(PopularDish);
+    //     expect(populardish.exists()).toBe(true);
+    // })
+
+    // it("should contain the 'Popular Dishes' header", () => {
+    //     const wrapper = shallow(<App />);
+    //     const header = wrapper.find(Header");
+    //     expect(header.exists()).toBe(true);
+    // })
 
     it("should render the title 'Bob' in App", () => {
         const wrapper = shallow(<App />);
