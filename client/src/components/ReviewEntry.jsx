@@ -129,7 +129,7 @@ class ReviewEntry extends React.Component {
             </RatingSection>
             {this.props.review.userReview.length < 229 ? (<div>
                 <Review>{this.state.currentReview}</Review><br></br>
-                </div>) 
+            </div>)
                 :
                 (<div>
                     <Review>{this.state.expand ? this.state.currentReview : this.state.shortReview}</Review>

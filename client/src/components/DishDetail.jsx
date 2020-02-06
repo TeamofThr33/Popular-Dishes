@@ -168,10 +168,10 @@ const ReviewCounts = styled.div`
 `;
 
 class DishDetail extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { ImageWidth: 0, ImageHeight: 0 };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
     render() {
 
@@ -185,8 +185,8 @@ class DishDetail extends React.Component {
                         {/* <DishPicture src={this.props.dish['photos'][this.props.currentPhotoIndex].URL} height="700"></DishPicture> */}
                     </PictureContainer>
                     <ChangePhotoControls>
-                        <PreviousPhotoButton type="image" src="./icons/leftArrow.svg" onClick={() => this.props.handlePreviousPhoto()}></PreviousPhotoButton>
-                        <NextPhotoButton type="image" src="./icons/rightArrow.svg" onClick={() => this.props.handleNextPhoto()}></NextPhotoButton>
+                        <PreviousPhotoButton type="image" src="./icons/leftArrow.svg" onClick={() => this.props.handlePreviousPhoto()} trigger={false}></PreviousPhotoButton>
+                        <NextPhotoButton type="image" src="./icons/rightArrow.svg" onClick={() => this.props.handleNextPhoto()} trigger={false}></NextPhotoButton>
                         {/* <PreviousPhotoButton type="image" src="./icons/leftArrow.svg" onClick={() => this.props.handlePreviousPhoto(this.props.dish['photos'].length)}></PreviousPhotoButton>
                         <NextPhotoButton type="image" src="./icons/rightArrow.svg" onClick={() => this.props.handleNextPhoto(this.props.dish['photos'].length)}></NextPhotoButton> */}
                     </ChangePhotoControls>
