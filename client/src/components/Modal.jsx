@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import ReactDOM from 'react-dom';
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const appRoot = document.getElementById('app-root');
+const appRoot = document.getElementById('popular-dishes-root');
 
 const ModalBackground = styled.div`
   background-color: rgba(0,0,0,0.7);
@@ -38,7 +38,7 @@ class Modal extends React.Component {
         {this.props.children}
       </ModalBackground>,
       appRoot
-    )
+    );
   }
 }
 

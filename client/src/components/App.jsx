@@ -16,7 +16,7 @@ const Heading = styled.h3`
 
 const Carousel = styled.div`
   max-height: 210px;
-  width: 650px;
+  width: 610px;
   padding-left: 0px;
   overflow: hidden;
   display: flex;
@@ -131,7 +131,7 @@ const RightSelectionBox = styled.div`
   display: ${props => props.positionX === props.carouselWidth ? "none" : "flex"};
   position: absolute;
   margin-top: 77px;
-  margin-left: 613px;
+  margin-left: 592px;
   z-index: 10;
   cursor:pointer;
 `;
@@ -160,16 +160,16 @@ const ChangeDishControl = styled.div`
 `;
 
 const PlaceHolder = styled.div`
-  width: 22px;
-  margin-left:-7px;
-  border: solid 1px white;
+  width: 20px;
+  margin-left:-14px;
+  border: solid 1px transparent;
 `;
 
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { restaurants: [{ popularDishes: [] }], positionX: 0, modal: false, currentDish: 0, currentPhotoIndex: 0, carouselWidth: 1, dishCollectionLength: 0 };
+    this.state = { restaurants: [{ popularDishes: [] }], positionX: 0, modal: false, currentDish: 0, currentPhotoIndex: 0, carouselWidth: 1, dishCollectionLength: 0, randomSample: 0 };
     this.queryData();
     this.carousel = React.createRef();
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -188,6 +188,11 @@ class App extends Component {
         this.handlePreviousPhoto();
       }
     });
+    this.generateRandomSample();
+  }
+
+  generateRandomSample() {
+    this.setState({randomSample: Math.floor(Math.random() * (101))})
   }
 
   handleCloseModal() {
@@ -222,16 +227,16 @@ class App extends Component {
 
   handleNext(event) {
     event.preventDefault();
-    this.carousel.current.scrollBy(654, 0)
+    this.carousel.current.scrollBy(614, 0)
   }
 
   handlePrevious(event) {
     event.preventDefault();
-    this.carousel.current.scrollBy(- 654, 0)
+    this.carousel.current.scrollBy(- 614, 0)
   }
 
   handleScroll(event) {
-    this.setState({ positionX: event.target.scrollLeft, carouselWidth: event.target.scrollWidth - 650 })
+    this.setState({ positionX: event.target.scrollLeft, carouselWidth: event.target.scrollWidth - 610 })
   }
 
   handleOpenModal(event, index, CollectionLength) {
@@ -250,11 +255,17 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.restaurants[19] === undefined) {
+    if (this.state.restaurants[this.state.randomSample] === undefined) {
       var restaurantSample = [];
     } else {
-      var restaurantSample = this.state.restaurants[19]['popularDishes'];
+      var restaurantSample = this.state.restaurants[this.state.randomSample]['popularDishes'];
     }
+
+    // if (this.state.restaurants[28] === undefined) {
+    //   var restaurantSample = [];
+    // } else {
+    //   var restaurantSample = this.state.restaurants[28]['popularDishes'];
+    // }
 
     return <AppComponent>
       <Heading>Popular Dishes</Heading>

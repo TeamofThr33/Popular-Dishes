@@ -8,7 +8,7 @@ const Container = styled.div`
     border-color: #e6e6e6;
     min-width: 192px;
     height: 186px;
-    margin-right: 24px;
+    margin-right: 12px;
     cursor: pointer;
     &:hover {
         box-shadow: 0 2px 6px rgba(0,0,0,.15);
@@ -19,6 +19,7 @@ const CoverPicture = styled.img`
     border-radius: 4px;
     width: 100%;
     height: 100%;
+    object-fit: cover;
 `;
 
 const LowerBanner = styled.div`
