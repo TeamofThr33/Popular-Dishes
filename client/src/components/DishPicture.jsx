@@ -40,6 +40,10 @@ class DishPicture extends React.Component {
     this.setState({ height: img.offsetHeight, width: img.offsetWidth, name: this.props.picture, edgeCase: false  }, this.checkEdgeCase);
   }
 
+  resetEdgeCaseState () {
+    this.setState({ edgeCase: false});
+  }
+
   checkEdgeCase() {
     if (this.state.width >= this.state.height) {
       if (this.state.height * 933 / this.state.width > 700) {
@@ -51,6 +55,8 @@ class DishPicture extends React.Component {
 
   render() {
     //   console.log(this.state.edgeCase);
+    // this.resetEdgeCaseState();
+
     return (
       <Container>
         <MockPicture>
