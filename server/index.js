@@ -1,15 +1,22 @@
-// Import the express framework for our node server
 const express = require('express');
-// Import the path module from node to create absolute file paths for express static
+
 const path = require('path');
 const db = require('./db.js');
-// Instantiate the express server
 const app = express();
-// Set a constant for the port that our express server will listen on
-const PORT = 3000;
 
-// Serve static files. Any requests for specific files will be served if they exist in the provided folder
+const PORT = 3001;
+
 app.use(express.static(path.join(__dirname, '../client/dist')));
+
+app.get('/bundle.js', function(req, res) {
+    res.sendFile("../client/bundle.js", function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('Sent: bundle.js')
+        }
+    })
+});
 
 app.get('/restaurants', function(req, res) {
     db.query((err, results) => {

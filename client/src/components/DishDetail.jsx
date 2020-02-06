@@ -36,12 +36,6 @@ const RightContainer = styled.div`
 
 RightContainer.displayName = "RightContainer";
 
-// const DishPicture = styled.img`
-//     display:flex;
-//     justify-content: center;
-//     align-items: center;
-// `;
-
 const PictureContainer = styled.div`
     display:flex;
     justify-content: center;
@@ -51,8 +45,6 @@ const PictureContainer = styled.div`
     width: 940px;
     height: 700px;
 `;
-
-// DishPicture.displayName = "DishPicture";
 
 const StartOrder = styled.button`
     width: 300px;

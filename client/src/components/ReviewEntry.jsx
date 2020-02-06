@@ -127,7 +127,7 @@ class ReviewEntry extends React.Component {
                 <Rating src={`./icons/${this.props.review.userReviewRating}-stars.svg`}></Rating>
                 <Date>{this.props.review.userReviewDate}</Date>
             </RatingSection>
-            {this.props.review.userReview.length < 230 ? (<div>
+            {this.props.review.userReview.length < 229 ? (<div>
                 <Review>{this.state.currentReview}</Review><br></br>
                 </div>) 
                 :
