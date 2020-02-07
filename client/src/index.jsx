@@ -3,4 +3,4 @@ import ReactDOM from 'react-dom';
 import App from './components/App.jsx';
 
 
-ReactDOM.render(<App/>, document.getElementById('popular-dishes'));
+ReactDOM.render(<App />, document.getElementById('popular-dishes'));
