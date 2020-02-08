@@ -167,57 +167,49 @@ const ReviewCounts = styled.div`
     color: #333;
 `;
 
-class DishDetail extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-    render() {
-
-        if (this.props.dish === undefined) {
-            var modal = '';
-        } else {
-            var modal = <ModalContainer>
-                <LeftContainer>
-                    <PictureContainer>
-                        <DishPicture picture={this.props.dish['photos'][this.props.currentPhotoIndex].URL} />
-                        {/* <DishPicture src={this.props.dish['photos'][this.props.currentPhotoIndex].URL} height="700"></DishPicture> */}
-                    </PictureContainer>
-                    <ChangePhotoControls>
-                        <PreviousPhotoButton type="image" src="./icons/leftArrow.svg" onClick={() => this.props.handlePreviousPhoto()} trigger={false}></PreviousPhotoButton>
-                        <NextPhotoButton type="image" src="./icons/rightArrow.svg" onClick={() => this.props.handleNextPhoto()} trigger={false}></NextPhotoButton>
-                        {/* <PreviousPhotoButton type="image" src="./icons/leftArrow.svg" onClick={() => this.props.handlePreviousPhoto(this.props.dish['photos'].length)}></PreviousPhotoButton>
-                        <NextPhotoButton type="image" src="./icons/rightArrow.svg" onClick={() => this.props.handleNextPhoto(this.props.dish['photos'].length)}></NextPhotoButton> */}
-                    </ChangePhotoControls>
-                    <FooterComment>
-                        <Description>{this.props.dish['photos'][this.props.currentPhotoIndex].description}</Description>
-                        <PhotoCount>{this.props.currentPhotoIndex + 1} of {this.props.dish['photos'].length}</PhotoCount>
-                    </FooterComment>
-                </LeftContainer>
-                <RightContainer>
-                    <RightContent>
-                        <TopSection>
-                            <Title>{this.props.dish['dishName']}</Title>
-                            <Price>{this.props.dish['dishPrice']}</Price>
-                        </TopSection>
-                        <Reviews>
-                            <Ingredients>{this.props.dish['ingredients']}</Ingredients>
-                            <ReviewCounts>Reviews ({this.props.dish['reviews'].length})</ReviewCounts><br></br>
-                            {this.props.dish['reviews'].map((review, index) => <ReviewEntry review={review} key={index} />)}
-                        </Reviews>
-                    </RightContent>
-                    <BottomContainer>
-                        <StartOrder>View Website</StartOrder>
-                    </BottomContainer>
-                </RightContainer>
-            </ModalContainer>
-        }
-
-        return <div>
-            {modal}
-        </div>
+let DishDetail = (props) => {
+    if ( props.dish === undefined) {
+        var modal = '';
+    } else {
+        var modal = <ModalContainer>
+            <LeftContainer>
+                <PictureContainer>
+                    <DishPicture picture={ props.dish['photos'][ props.currentPhotoIndex].URL} checkEdgeCase = {props.checkEdgeCase} onImgLoad = {props.onImgLoad}  height={props.height} width={props.width} edgeCase = {props.edgeCase}/>
+                    {/* <DishPicture src={ props.dish['photos'][ props.currentPhotoIndex].URL} height="700"></DishPicture> */}
+                </PictureContainer>
+                <ChangePhotoControls>
+                    <PreviousPhotoButton type="image" src="./icons/leftArrow.svg" onClick={() =>  props.handlePreviousPhoto()} trigger={false}></PreviousPhotoButton>
+                    <NextPhotoButton type="image" src="./icons/rightArrow.svg" onClick={() =>  props.handleNextPhoto()} trigger={false}></NextPhotoButton>
+                    {/* <PreviousPhotoButton type="image" src="./icons/leftArrow.svg" onClick={() =>  props.handlePreviousPhoto( props.dish['photos'].length)}></PreviousPhotoButton>
+                    <NextPhotoButton type="image" src="./icons/rightArrow.svg" onClick={() =>  props.handleNextPhoto( props.dish['photos'].length)}></NextPhotoButton> */}
+                </ChangePhotoControls>
+                <FooterComment>
+                    <Description>{ props.dish['photos'][ props.currentPhotoIndex].description}</Description>
+                    <PhotoCount>{ props.currentPhotoIndex + 1} of { props.dish['photos'].length}</PhotoCount>
+                </FooterComment>
+            </LeftContainer>
+            <RightContainer>
+                <RightContent>
+                    <TopSection>
+                        <Title>{ props.dish['dishName']}</Title>
+                        <Price>{ props.dish['dishPrice']}</Price>
+                    </TopSection>
+                    <Reviews>
+                        <Ingredients>{ props.dish['ingredients']}</Ingredients>
+                        <ReviewCounts>Reviews ({ props.dish['reviews'].length})</ReviewCounts><br></br>
+                        { props.dish['reviews'].map((review, index) => <ReviewEntry review={review} key={index} />)}
+                    </Reviews>
+                </RightContent>
+                <BottomContainer>
+                    <StartOrder>View Website</StartOrder>
+                </BottomContainer>
+            </RightContainer>
+        </ModalContainer>
     }
+
+    return <div>
+        {modal}
+    </div>
 }
 
 export default DishDetail;

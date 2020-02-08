@@ -58,7 +58,6 @@ const PreviousDishBox = styled.div`
 
 const NextDishBox = styled.div`
   display: ${props => props.currentDish === (props.AmountOfDishes - 1) ? "none" : "flex"};
-  /* float: right; */
   margin-right: 10px;
   margin-top: 3px;
   font-size: 14px;
@@ -165,11 +164,11 @@ const PlaceHolder = styled.div`
   border: solid 1px transparent;
 `;
 
-
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { restaurants: [{ popularDishes: [] }], positionX: 0, modal: false, currentDish: 0, currentPhotoIndex: 0, carouselWidth: 1, dishCollectionLength: 0, randomSample: 0 };
+    // eslint-disable-next-line react/no-unused-state
+    this.state = { restaurants: [{ popularDishes: [] }], positionX: 0, modal: false, currentDish: 0, currentPhotoIndex: 0, carouselWidth: 1, dishCollectionLength: 0, randomSample: 0, height: 0, width: 0, edgeCase: false, name: '' };
     this.queryData();
     this.carousel = React.createRef();
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -201,17 +200,17 @@ class App extends Component {
 
   handleNextPhoto() {
     if (this.state.currentPhotoIndex === this.state.dishCollectionLength - 1) {
-      this.setState({ currentPhotoIndex: 0 });
+      this.setState({ currentPhotoIndex: 0, edgeCase: false });
     } else {
-      this.setState({ currentPhotoIndex: this.state.currentPhotoIndex + 1 });
+      this.setState({ currentPhotoIndex: this.state.currentPhotoIndex + 1, edgeCase: false });
     }
   }
 
   handlePreviousPhoto() {
     if (this.state.currentPhotoIndex === 0) {
-      this.setState({ currentPhotoIndex: this.state.dishCollectionLength - 1 });
+      this.setState({ currentPhotoIndex: this.state.dishCollectionLength - 1, edgeCase: false });
     } else {
-      this.setState({ currentPhotoIndex: this.state.currentPhotoIndex - 1 });
+      this.setState({ currentPhotoIndex: this.state.currentPhotoIndex - 1, edgeCase: false });
     }
   }
 
@@ -254,13 +253,26 @@ class App extends Component {
     this.setState({ currentDish: this.state.currentDish + 1, currentPhotoIndex: 0 });
   }
 
+  onImgLoad({ target: img }) {
+    this.setState({ height: img.offsetHeight, width: img.offsetWidth, name: this.props.picture, edgeCase: false  }, this.checkEdgeCase);
+  }
+
+  checkEdgeCase() {
+    if (this.state.width >= this.state.height) {
+      if (this.state.height * 933 / this.state.width > 700) {
+        this.setState({ edgeCase: true, name: this.props.picture });
+      }
+    }
+  }
+
   render() {
     if (this.state.restaurants[this.state.randomSample] === undefined) {
       var restaurantSample = [];
     } else {
       var restaurantSample = this.state.restaurants[this.state.randomSample]['popularDishes'];
     }
-
+    
+    //Uncomment this section for testing specific samples
     // if (this.state.restaurants[28] === undefined) {
     //   var restaurantSample = [];
     // } else {
@@ -291,7 +303,7 @@ class App extends Component {
             <CloseButton onClick={(e) => this.handleCloseModal(e)}>Close</CloseButton>
             <CrossButton src="./icons/cross.svg" onClick={(e) => this.handleCloseModal(e)}></CrossButton>
           </CloseSection>
-          <DishDetail dish={restaurantSample[this.state.currentDish]} currentPhotoIndex={this.state.currentPhotoIndex} handleNextPhoto={this.handleNextPhoto.bind(this)} handlePreviousPhoto={this.handlePreviousPhoto.bind(this)} />
+          <DishDetail dish={restaurantSample[this.state.currentDish]} currentPhotoIndex={this.state.currentPhotoIndex} handleNextPhoto={this.handleNextPhoto.bind(this)} handlePreviousPhoto={this.handlePreviousPhoto.bind(this)} onImgLoad = {this.onImgLoad.bind(this)} checkEdgeCase = {this.checkEdgeCase.bind(this)} height={this.state.height} width={this.state.width} edgeCase={this.state.edgeCase}/>
           <ChangeDishControl>
             <PreviousDishBox currentDish={this.state.currentDish} onClick={(e) => this.handlePreviousDish(e)}>
               <PreviousDishButton type="image" src="./icons/leftArrow.svg"></PreviousDishButton>
