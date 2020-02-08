@@ -56,26 +56,19 @@ const DishPrice = styled.span`
     margin-left: -62px;
     font-size: 14px;
 `;
-
-class PopularDish extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return <Container onClick={(e) => this.props.handleOpenModal(e, this.props.dishIndex, this.props.dish.photos.length)}>
-            <CoverPicture src={this.props.dish.coverPictureURL}></CoverPicture>
-            <DishPrice>{this.props.dish.dishPrice}</DishPrice>
-            <LowerBanner>
-                <DishName>{this.props.dish.dishName}</DishName>
-                <DishStats>
-                    <span className="numberOfPhotos">{this.props.dish.photos.length} Photos</span>
-                    <span> · </span>
-                    <span className="numberOfReviews">{this.props.dish.reviews.length} Reviews</span>
-                </DishStats>
-            </LowerBanner>
-        </Container>
-    }
+let PopularDish = (props) => {
+    return <Container onClick={(e) => props.handleOpenModal(e, props.dishIndex, props.dish.photos.length)}>
+        <CoverPicture src={props.dish.coverPictureURL}></CoverPicture>
+        <DishPrice>{props.dish.dishPrice}</DishPrice>
+        <LowerBanner>
+            <DishName>{props.dish.dishName}</DishName>
+            <DishStats>
+                <span className="numberOfPhotos">{props.dish.photos.length} Photos</span>
+                <span> · </span>
+                <span className="numberOfReviews">{props.dish.reviews.length} Reviews</span>
+            </DishStats>
+        </LowerBanner>
+    </Container>
 }
 
 export default PopularDish;
