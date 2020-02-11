@@ -178,8 +178,8 @@ let DishDetail = (props) => {
                     {/* <DishPicture src={ props.dish['photos'][ props.currentPhotoIndex].URL} height="700"></DishPicture> */}
                 </PictureContainer>
                 <ChangePhotoControls>
-                    <PreviousPhotoButton type="image" src="./icons/leftArrow.svg" onClick={() =>  props.handlePreviousPhoto()} trigger={false}></PreviousPhotoButton>
-                    <NextPhotoButton type="image" src="./icons/rightArrow.svg" onClick={() =>  props.handleNextPhoto()} trigger={false}></NextPhotoButton>
+                    <PreviousPhotoButton type="image" src="./icons/leftArrow.svg" onClick={() =>  props.handlePreviousPhoto(props.dish['photos'].length)} trigger={false}></PreviousPhotoButton>
+                    <NextPhotoButton type="image" src="./icons/rightArrow.svg" onClick={() =>  props.handleNextPhoto(props.dish['photos'].length)} trigger={false}></NextPhotoButton>
                     {/* <PreviousPhotoButton type="image" src="./icons/leftArrow.svg" onClick={() =>  props.handlePreviousPhoto( props.dish['photos'].length)}></PreviousPhotoButton>
                     <NextPhotoButton type="image" src="./icons/rightArrow.svg" onClick={() =>  props.handleNextPhoto( props.dish['photos'].length)}></NextPhotoButton> */}
                 </ChangePhotoControls>
