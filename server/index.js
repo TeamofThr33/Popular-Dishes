@@ -4,11 +4,14 @@ const path = require('path');
 
 const db = require('./db.js');
 
+const compression = require('compression');
+
 const app = express();
 
 const PORT = 3001;
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(compression());
 
 // Uncomment if you want to serve the bundle locally instead of S3
 app.get('/bundle.js', function(req, res) {

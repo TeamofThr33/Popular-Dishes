@@ -6,6 +6,8 @@
   "scripts": {
     "test": "jest --watchAll",
     "react-dev": "webpack -w",
+    "react-dev-new": "webpack-dev-server --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
     "start": "nodemon ./server/index.js",
     "seedDB": "node ./server/seeding.js"
   },
@@ -27,11 +29,13 @@
     "eslint-plugin-react-hooks": "^1.7.0",
     "jest": "^25.1.0",
     "webpack": "^4.41.0",
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.9",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
     "express": "^4.15.0",
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
