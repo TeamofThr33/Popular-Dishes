@@ -213,11 +213,9 @@ class App extends Component {
       if (e.keyCode === 27) {
         this.handleCloseModal();
       } else if (e.keyCode === 39) {
-        e.preventDefault();
-        this.handleNextPhoto();
+        this.handleNextPhoto(this.state.restaurants[this.state.randomSample].popularDishes[this.state.currentDish].photos.length);
       } else if (e.keyCode === 37) {
-        e.preventDefault();
-        this.handlePreviousPhoto();
+        this.handlePreviousPhoto(this.state.restaurants[this.state.randomSample].popularDishes[this.state.currentDish].photos.length);
       }
     });
     this.generateRandomSample();
@@ -287,7 +285,7 @@ class App extends Component {
   }
 
   onImgLoad({ target: img }) {
-    this.setState({ height: img.offsetHeight, width: img.offsetWidth, name: this.props.picture, edgeCase: false  }, this.checkEdgeCase);
+    this.setState({ height: img.offsetHeight, width: img.offsetWidth, edgeCase: false  }, this.checkEdgeCase);
   }
 
   checkEdgeCase() {

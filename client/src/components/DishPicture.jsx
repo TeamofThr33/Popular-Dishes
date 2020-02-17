@@ -22,56 +22,12 @@ const Container = styled.div`
   height: 694px;
 `;
 
-const MockPicture = styled.div`
-  display: none;
-`;
-
-
 let DishPicture = (props) => {
   return (
     <Container>
-      <MockPicture>
-        <Picture onLoad={props.onImgLoad} src={props.picture} heightDimension={props.height} widthDimension={props.width}></Picture>
-      </MockPicture>
       {props.edgeCase ? (<PictureEdgeCase src={props.picture}></PictureEdgeCase>) : (<Picture onLoad={props.onImgLoad} src={props.picture} heightDimension={props.height} widthDimension={props.width}></Picture>)}
     </Container>
   );
 };
-
-// class DishPicture extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = { height: 0, width: 0, edgeCase: false, name: '' };
-//     this.onImgLoad = this.onImgLoad.bind(this);
-//     this.checkEdgeCase = this.checkEdgeCase.bind(this);
-//   }
-
-//   onImgLoad({ target: img }) {
-//     this.setState({ height: img.offsetHeight, width: img.offsetWidth, name: this.props.picture, edgeCase: false  }, this.checkEdgeCase);
-//   }
-
-//   resetEdgeCaseState () {
-//     this.setState({ edgeCase: false});
-//   }
-
-//   checkEdgeCase() {
-//     if (this.state.width >= this.state.height) {
-//       if (this.state.height * 933 / this.state.width > 700) {
-//         this.setState({ edgeCase: true, name: this.props.picture });
-//       }
-//     }
-//   }
-
-//   render() {
-//     return (
-//       <Container>
-//         <MockPicture>
-//             <Picture onLoad={props.onImgLoad} src={props.picture} heightDimension={props.height} widthDimension={props.width}></Picture>
-//         </MockPicture>
-//         {props.edgeCase ? (<PictureEdgeCase src={props.picture}></PictureEdgeCase>) : (<Picture onLoad={props.ComponentonImgLoad} src={props.picture} heightDimension={props.height} widthDimension={props.width}></Picture>)}
-//       </Container>
-//     );
-//   }
-// }
 
 export default DishPicture;
