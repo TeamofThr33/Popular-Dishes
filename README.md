@@ -4,6 +4,7 @@ Restaurant application showcasing pictures and reviews of popular dishes with ta
 
 ![](popularDishes.gif)
 
+[Full video demo here](https://www.youtube.com/watch?v=nNCVeByWdPc&feature=youtu.be&t=35)
 
 ## Getting Started
 Prerequisites: Node 6 or above, and mongoDB
