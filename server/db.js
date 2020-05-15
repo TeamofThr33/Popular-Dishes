@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/popularfood', { useNewUrlParser: true });
+mongoose.connect('mongodb://172.17.0.3/popularfood', { useNewUrlParser: true });
 
 var db = mongoose.connection;
 
