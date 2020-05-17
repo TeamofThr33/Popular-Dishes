@@ -15,12 +15,16 @@ const Container = styled.div`
     }
 `;
 
+Container.displayName = 'Container';
+
 const CoverPicture = styled.img`
     border-radius: 4px;
     width: 100%;
     height: 100%;
     object-fit: cover;
 `;
+
+CoverPicture.displayName = 'CoverPicture';
 
 const LowerBanner = styled.div`
     width: 192px;
@@ -32,6 +36,8 @@ const LowerBanner = styled.div`
     margin-top: -70px;
 `;
 
+LowerBanner.displayName = 'LowerBanner';
+
 const DishName = styled.div`
     padding-left: 12px;
     padding-top: 18px;
@@ -39,12 +45,16 @@ const DishName = styled.div`
     font-weight: bold;
 `;
 
+DishName.displayName = 'DishName';
+
 const DishStats = styled.div`
     padding-left: 12px;
     color:gray;
     font-size: 12px;
     margin-top:4px;
 `;
+
+DishStats.displayName = 'DishStats';
 
 const DishPrice = styled.span`
     color: white;
@@ -56,6 +66,9 @@ const DishPrice = styled.span`
     margin-left: -62px;
     font-size: 14px;
 `;
+
+DishPrice.displayName = 'DishPrice';
+
 let PopularDish = (props) => {
     return <Container onClick={(e) => props.handleOpenModal(e, props.dishIndex, props.dish.photos.length)}>
         <CoverPicture src={props.dish.coverPictureURL}></CoverPicture>

@@ -46,6 +46,8 @@ const PictureContainer = styled.div`
     height: 700px;
 `;
 
+PictureContainer.displayName = "PictureContainer";
+
 const StartOrder = styled.button`
     width: 300px;
     height: 36px;
@@ -58,11 +60,15 @@ const StartOrder = styled.button`
     cursor: pointer;
 `;
 
+StartOrder.displayName = "StartOrder";
+
 const Reviews = styled.div`
     overflow-y: scroll;
     height: 500px;
     padding-bottom: 0px;
 `;
+
+Reviews.displayName = "Reviews";
 
 const Description = styled.span`
     color: white;
@@ -71,10 +77,14 @@ const Description = styled.span`
     font-size: 14px;
 `;
 
+Description.displayName = "Description";
+
 const PhotoCount = styled.span`
     color: white;
     margin: 20px;
 `;
+
+PhotoCount.displayName = "PhotoCount";
 
 const FooterComment = styled.div`
     display: flex;
@@ -87,12 +97,16 @@ const FooterComment = styled.div`
     font-size: 14px;
 `;
 
+FooterComment.displayName = "FooterComment";
+
 const ChangePhotoControls = styled.div`
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     position: absolute;
 `;
+
+ChangePhotoControls.displayName = "ChangePhotoControls";
 
 const BottomContainer = styled.div`
     height: 97px;
@@ -105,10 +119,14 @@ const BottomContainer = styled.div`
     border-radius: 0px 0px 6px 0px;
 `;
 
+BottomContainer.displayName = "BottomContainer";
+
 const RightContent = styled.div`
     padding: 30px;
     padding-bottom: 0px;
 `;
+
+RightContent.displayName = "RightContent";
 
 const NextPhotoButton = styled.input`
     margin-left: 909px;
@@ -124,6 +142,8 @@ const NextPhotoButton = styled.input`
     }
 `;
 
+NextPhotoButton.displayName = "NextPhotoButton";
+
 const PreviousPhotoButton = styled.input`
     margin-left: 15px;
     width: 17px;
@@ -137,16 +157,22 @@ const PreviousPhotoButton = styled.input`
     }
 `;
 
+PreviousPhotoButton.displayName = "PreviousPhotoButton";
+
 const TopSection = styled.div`
     height: 85px;
     display: inline-block;
     margin-top: -20px;
 `;
 
+TopSection.displayName = "TopSection";
+
 const Title = styled.h2`
     font-size: 22px;
     color: #333;
 `;
+
+Title.displayName = "Title";
 
 const Price = styled.div`
     font-size: 14px;
@@ -155,17 +181,23 @@ const Price = styled.div`
     color: #333;
 `;
 
+Price.displayName = "Price";
+
 const Ingredients = styled.div`
     font-size: 14px;
     margin-bottom: 25px;
     color: #333;
 `;
 
+Ingredients.displayName = "Ingredients";
+
 const ReviewCounts = styled.div`
     font-size: 16px;
     font-weight: bold;
     color: #333;
 `;
+
+ReviewCounts.displayName = "ReviewCounts";
 
 let DishDetail = (props) => {
     if ( props.dish === undefined) {

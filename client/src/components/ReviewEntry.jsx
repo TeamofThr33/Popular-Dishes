@@ -8,6 +8,8 @@ const UsernamePhoto = styled.img`
     margin-right: 6px;
 `;
 
+UsernamePhoto.displayName = "UsernamePhoto";
+
 const Profile = styled.div`
     display: flex;
     align-items: center;
@@ -15,11 +17,15 @@ const Profile = styled.div`
     margin-bottom: 7px;
 `;
 
+Profile.displayName = "Profile";
+
 const FriendsIcon = styled.img`
     height: 18px;
     width: 18px;
     margin-right: 3px;
 `;
+
+FriendsIcon.displayName = "FriendsIcon";
 
 const Star = styled.img`
     height: 12px;
@@ -27,17 +33,23 @@ const Star = styled.img`
     margin-right: 6px;
 `;
 
+Star.displayName = "Star";
+
 const Rating = styled.img`
     height: 18px;
     width: 102px;
     margin-right: 6px;
 `;
 
+Rating.displayName = "Rating";
+
 const UserReviewsCount = styled.span`
     font-size: 12px;
     font-weight: bold;
     color: #666;
 `;
+
+UserReviewsCount.displayName = "UserReviewsCount";
 
 const UserFriendsCount = styled.span`
     font-size: 12px;
@@ -46,10 +58,14 @@ const UserFriendsCount = styled.span`
     margin-right: 6px;
 `;
 
+UserFriendsCount.displayName = "UserFriendsCount";
+
 const Date = styled.span`
     font-size: 14px;
     color: #666;
 `;
+
+Date.displayName = "Date";
 
 const ReadMore = styled.div`
     /* display: ${props => props.expand ? "flex" : "none"}; */
@@ -60,32 +76,46 @@ const ReadMore = styled.div`
     margin-top: 4px;
 `;
 
+ReadMore.displayName = "ReadMore";
+
 const Username = styled.div`
     font-size: 14px;
     font-weight: bold;
 `;
+
+Username.displayName = "Username";
 
 const Review = styled.span`
     font-size: 14px;
     margin-top: 5px;
 `;
 
+Review.displayName = "Review";
+
 const StatsSection = styled.div`
     display: flex;
     align-items: center;
 `;
 
+StatsSection.displayName = "StatsSection";
+
 const RatingSection = styled.div`
     display:flex;
     align-items: center;
-    margin-bottom: 3px; 
+    margin-bottom: 3px;
 `;
+
+RatingSection.displayName = "RatingSection";
 
 const ProfileLeft = styled.div`
 `;
 
+ProfileLeft.displayName = "ProfileLeft";
+
 const ProfileRight = styled.div`
 `;
+
+ProfileRight.displayName = "ProfileRight";
 
 class ReviewEntry extends React.Component {
     constructor(props) {
