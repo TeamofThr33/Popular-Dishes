@@ -113,3 +113,4 @@ var generateData = () => {
 const db = require('./db.js');
 var restaurantData = generateData();
 db.seeding(restaurantData); 
+console.log('success: Docker')

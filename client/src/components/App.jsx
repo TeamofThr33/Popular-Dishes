@@ -200,7 +200,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurants: [{ popularDishes: [] }], positionX: 0, modal: false, currentDish: 0, currentPhotoIndex: 0, carouselWidth: 1, dishCollectionLength: 0, randomSample: 0, height: 0, width: 0, edgeCase: false, name: ''
+      restaurants: [{ popularDishes: this.props.sampleData }], positionX: 0, modal: false, currentDish: 0, currentPhotoIndex: 0, carouselWidth: 1, dishCollectionLength: 0, randomSample: 0, height: 0, width: 0, edgeCase: false, name: ''
     };
     this.queryData();
     this.carousel = React.createRef();
@@ -213,11 +213,9 @@ class App extends Component {
       if (e.keyCode === 27) {
         this.handleCloseModal();
       } else if (e.keyCode === 39) {
-        e.preventDefault();
-        this.handleNextPhoto();
+        this.handleNextPhoto(this.state.restaurants[this.state.randomSample].popularDishes[this.state.currentDish].photos.length);
       } else if (e.keyCode === 37) {
-        e.preventDefault();
-        this.handlePreviousPhoto();
+        this.handlePreviousPhoto(this.state.restaurants[this.state.randomSample].popularDishes[this.state.currentDish].photos.length);
       }
     });
     this.generateRandomSample();
@@ -251,6 +249,7 @@ class App extends Component {
     axios.get('/restaurants')
       .then((response) => {
         this.setState({ restaurants: response.data });
+        // console.log(JSON.stringify(response.data[0]))
       })
       .catch((error) => {
         console.log(error);
@@ -287,7 +286,7 @@ class App extends Component {
   }
 
   onImgLoad({ target: img }) {
-    this.setState({ height: img.offsetHeight, width: img.offsetWidth, name: this.props.picture, edgeCase: false  }, this.checkEdgeCase);
+    this.setState({ height: img.offsetHeight, width: img.offsetWidth, edgeCase: false  }, this.checkEdgeCase);
   }
 
   checkEdgeCase() {
@@ -300,11 +299,11 @@ class App extends Component {
 
   render() {
     if (this.state.restaurants[this.state.randomSample] === undefined) {
-      var restaurantSample = [];
+      var restaurantSample = this.props.sampleData;
     } else {
       var restaurantSample = this.state.restaurants[this.state.randomSample]['popularDishes'];
     }
-    
+
     //Uncomment this section for testing specific samples
     // if (this.state.restaurants[28] === undefined) {
     //   var restaurantSample = [];
